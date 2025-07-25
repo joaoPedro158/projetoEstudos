@@ -1,19 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\controllerCategoria;
 
-Route::get('/', function () {
+Route::get('/',[HomeController::class, 'index'])
+    ->name('home.index');
 
-    $nome = 'João Pedro';
-    $idade = 25;
-    $habilidades = ['PHP', 'Laravel', 'JavaScript'];
-    return view('welcome', [
-        'nome' => $nome,
-        'idade' => $idade,
-        'habilidades' => $habilidades
-    ]);
-});
 
-Route::get('/categoria', function () {
-    return view('categoria');
-});
+
+Route::get('/categoria', [controllerCategoria::class, 'index'])
+    ->name('categoria.index');

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-         <title>@yield('titlle', 'meu site de laravel')</title>
+         <title>@yield('title', 'meu site de laravel')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -36,7 +36,7 @@
                 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link " href="http://127.0.0.1:8000/categoria">categoria</a>
+                        <a class="nav-link " href="{{route('categoria.index')}}">categoria</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Oferta</a>
@@ -57,7 +57,7 @@
                         <a class="nav-link" href="#">Ajuda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{route('home.index')}}">Home</a>
                     </li>
                 </ul>
             </div>
