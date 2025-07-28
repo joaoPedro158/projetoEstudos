@@ -9,7 +9,7 @@ class HomeController extends Controller
     
     public function index() {
 
-         $nome = 'João Pedro';
+        $nome = 'João Pedro';
         $idade = 25;
         $habilidades = ['PHP', 'Laravel', 'JavaScript'];
         return view('welcome', [

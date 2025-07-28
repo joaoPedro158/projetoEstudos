@@ -8,6 +8,7 @@
                 <li>{{$habilidades}}</li>
             @endforeach
         </ul>
+       
 
 @endsection
         

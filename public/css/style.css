@@ -1,3 +1,9 @@
-h1 {
-    color: aqua;
-}
+/* <!-- Estilo para o hover do CEP --> */
+      
+            .cep-container a {
+                opacity: 0.75;
+                transition: opacity 0.2s ease-in-out;
+            }
+            .cep-container a:hover {
+                opacity: 1;
+            }
