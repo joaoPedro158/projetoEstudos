@@ -89,8 +89,8 @@
                         <!-- Lado Direito: Links de Conta (MODIFICADO) -->
                         <div class="col-md-3">
                             <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-end">
-                                <li class="nav-item px-2"><a class="nav-link" href="#">Crie sua conta</a></li>
-                                <li class="nav-item px-2"><a class="nav-link" href="#">Entra</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" href="{{route('CriarConta.index')}}">Crie sua conta</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" href="{{route('Login.index')}}">Entra</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Vender</a></li>
                             </ul>
                         </div>

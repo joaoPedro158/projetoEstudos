@@ -1,6 +1,7 @@
-@extends('layout.main')
-@section('tittle', 'Produto')
+@extends('layout.MainSimples')
+@section('title', 'Produto')
 @section('conteudo')
+
     <h1>Produtos cadastrados</h1>
 
     <ul>
@@ -14,4 +15,17 @@
             <hr>
         @endforeach
     </ul>
+
+
+    <div class="container my-5">
+    <h2 class="mb-4">Produtos em Destaque</h2>
+    
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        {{-- Loop para cada produto --}}
+        @foreach ($produto as $item)
+            {{-- Chamando o componente e passando os dados do produto --}}
+            <x-produto-card :produto="$item" />
+        @endforeach
+    </div>
+</div>
 @endsection
