@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
          <title>@yield('title', 'meu site de laravel')</title>
 
         <!-- Fonts -->
@@ -16,13 +15,13 @@
 
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-       
+
         @stack('styles')
-    </head> 
+    </head>
 
 
      <body>
-        
+
         <header class="shadow-sm">
             <!-- Linha Principal: Logo e Link de Ajuda -->
             <div class="py-3" style="background-color: #1C3D5A;">
@@ -42,7 +41,7 @@
                 </div>
             </div>
         </header>
-       
+
         <main>
             @yield('conteudo')
         </main>

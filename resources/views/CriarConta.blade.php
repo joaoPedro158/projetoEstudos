@@ -8,15 +8,15 @@
     <main class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
-                    
+
                     <div class="card shadow-lg border-0">
                         <div class="card-header text-white text-center py-3" style="background-color: #1C3D5A;">
                             <h4 class="mb-0">Crie sua Conta</h4>
                         </div>
                         <div class="card-body p-4 p-md-5">
                             {{-- O formulário deve apontar para a sua rota de registro --}}
-                            <form method="POST" action="{{-- route('register.store') --}}">
-                                {{-- @csrf Token de segurança do Laravel, essencial! --}}
+                            <form method="POST" action="{{ route('CriarConta.store') }}">
+                                @csrf
 
                                 <!-- Campo Nome Completo -->
                                 <div class="mb-3">
@@ -34,12 +34,18 @@
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Senha</label>
                                     <input type="password" class="form-control" id="password" name="password" required>
+                                    @error('password')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Campo Confirmar Senha -->
                                 <div class="mb-4">
                                     <label for="password_confirmation" class="form-label">Confirmar Senha</label>
                                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                     @error('password_confirmation')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Checkbox de Termos e Condições -->

@@ -15,12 +15,12 @@ Route::get('/',[HomeController::class, 'index'])
 Route::get('/categoria', [controllerCategoria::class, 'listaCategoria'])
     ->name('categoria.index');
 
-Route::get('/produto', [ProdutoController::class, 'showProduto'])
-    ->name('produto.index');
-
 
 Route::get('/criar', [CriarContaController::class, 'index'])
     ->name('CriarConta.index');
 
 Route::get('/login', [LoginController::class, 'index'])
     ->name('Login.index');
+
+Route::post('/CriarConta', [CriarContaController::class, 'store'])
+    ->name('CriarConta.store');
