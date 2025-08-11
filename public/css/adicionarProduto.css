@@ -1,0 +1,26 @@
+
+.header-principal {
+  background-color: var(--cor-primaria-escura);
+  color: var(--cor-texto-branco);
+  background-color: #1C3D5A;
+}
+.card-header{
+    background-color: var(--cor-primaria-escura);
+
+}
+.btn-custom-yellow {
+  background-color: var(--cor-destaque-amarela);
+  border-color: var(--cor-destaque-amarela);
+  color: var(--cor-primaria-escura);
+  font-weight: bold;
+}
+
+.btn-custom-yellow:hover {
+  background-color: var(--cor-destaque-amarela-hover);
+  border-color: var(--cor-destaque-amarela-hover);
+  color: var(--cor-primaria-escura);
+}
+
+.icone-destaque {
+    color: var(--cor-destaque-amarela);
+}

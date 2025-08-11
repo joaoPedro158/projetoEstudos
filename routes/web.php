@@ -6,6 +6,7 @@ use App\Http\Controllers\controllerCategoria;
 use App\Http\Controllers\CriarContaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FinanciasController;
+use App\Http\Controllers\AdicionarProdutoController;
 
 Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
@@ -27,3 +28,7 @@ Route::post('/CriarConta', [CriarContaController::class, 'store'])
 
 Route::get('/Financias', [FinanciasController::class, 'index'])
     ->name('Financias.index');
+
+    // Rota para adiminsitradores
+Route::get('/adicionarProduto', [AdicionarProdutoController::class, 'adicionarProduto'])
+    ->name('adicionarProduto.index');

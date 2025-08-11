@@ -1,6 +1,7 @@
 @extends('layout.MainSimples')
 @push('styles')
-<link rel="stylesheet" href="/css/CriarConta.css">
+<link rel="stylesheet" href="{{ asset('css/Cores.css') }}">
+<link rel="stylesheet" href="{{ asset('css/CriarConta.css') }}">
 @endpush
 @section('title', 'cadastro')
 @section('conteudo')
@@ -10,7 +11,7 @@
                 <div class="col-md-8 col-lg-6">
 
                     <div class="card shadow-lg border-0">
-                        <div class="card-header text-white text-center py-3" style="background-color: #1C3D5A;">
+                        <div class="card-header text-white text-center py-3">
                             <h4 class="mb-0">Crie sua Conta</h4>
                         </div>
                         <div class="card-body p-4 p-md-5">
@@ -74,6 +75,6 @@
             </div>
         </main>
 
-     
+
 
 @endsection

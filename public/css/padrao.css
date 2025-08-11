@@ -1,0 +1,33 @@
+body {
+  background-color: var(--cor-fundo-claro);
+  color: var(--cor-texto-principal);
+}
+
+header.header {
+    background-color: var(--cor-primaria-escura);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.navbar{
+    background-color: var(--cor-primaria-escura);
+}
+
+.d-block{
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+/* <!-- Estilo para o hover do CEP --> */
+
+.cep-container a {
+    opacity: 0.75;
+    transition: opacity 0.2s ease-in-out;
+}
+.cep-container a:hover {
+    opacity: 1;
+}
+
+main {
+    padding: 2rem;
+}
+

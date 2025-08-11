@@ -1,0 +1,9 @@
+:root {
+  /* Cores Principais */
+  --cor-primaria-escura: #1C3D5A; /* Azul escuro usado no header e rodapés */
+  --cor-destaque-amarela: #F1C40F; /* Amarelo para ícones e botões principais */
+  --cor-destaque-amarela-hover: #d4ac0d; /* Tom mais escuro do amarelo para efeito hover */
+
+  /* Cores de Fundo */
+  --cor-fundo-claro: #f0f2f5; /* Cinza claro para o fundo de páginas como login/cadastro */
+}

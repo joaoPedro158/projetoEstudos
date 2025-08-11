@@ -11,7 +11,8 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
         <!-- Styles -->
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="{{ asset('css/Cores.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/padrao.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
         <!-- Bootstrap Icons -->
@@ -22,7 +23,7 @@
     </head>
     <body>
      <!-- INÍCIO DO HEADER -->
-        <header style="background-color: #1C3D5A; padding-top: 1rem; padding-bottom: 1rem;">
+        <header class="header ">
             <!-- Primeira Linha: Logo, Busca e Ícones -->
             <div class="container">
                 <div class="row align-items-center">
@@ -60,7 +61,7 @@
             <hr class="text-white-50 my-2">
 
             <!-- Segunda Linha: Navbar com CEP, Links e Conta -->
-            <nav class="navbar navbar-dark" style="background-color: #1C3D5A;">
+            <nav class="navbar navbar-dark" >
                 <div class="container">
                     <div class="row align-items-center w-100">
                         <!-- Lado Esquerdo: CEP -->
@@ -69,7 +70,7 @@
                                 <a href="#" class="text-white d-flex align-items-center text-decoration-none">
                                     <i class="bi bi-geo-alt-fill me-2 fs-5"></i>
                                     <div>
-                                        <span class="d-block" style="font-size: 0.8rem; line-height: 1;">Informe seu</span>
+                                        <span class="d-block" >Informe seu</span>
                                         <span class="d-block fw-bold">CEP</span>
                                     </div>
                                 </a>
@@ -84,7 +85,7 @@
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Ofertas</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Cupons</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Baixe o App</a></li>
-                                <li class="nav-item px-2"><a class="nav-link" href="#">Ajuda</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" href="{{route('adicionarProduto.index')}}">Adionar Produto</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="{{route('Financias.index')}}">Controle finançeiro</a></li>
                             </ul>
                         </div>
