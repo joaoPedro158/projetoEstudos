@@ -17,8 +17,8 @@ class CriarContaController extends Controller {
         'email' => 'required|email|unique:users,email',
         'password' => 'required|string|min:6|confirmed',
         ]);
+
         // Criação do usuário
-        // O método bcrypt() é usado para criptografar a senha
         $criarConta = new User;
 
         $criarConta->name = $request->input('name');

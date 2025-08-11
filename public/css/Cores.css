@@ -6,4 +6,9 @@
 
   /* Cores de Fundo */
   --cor-fundo-claro: #f0f2f5; /* Cinza claro para o fundo de páginas como login/cadastro */
+
+  /* Cores Específicas de Produtos */
+            --cor-produto-preto: #000;
+            --cor-produto-azul: #add8e6;
+            --cor-produto-prata: #ccc;
 }

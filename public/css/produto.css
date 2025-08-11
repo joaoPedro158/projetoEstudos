@@ -1,0 +1,60 @@
+body {
+    background-color: var(--cor-fundo-claro); /* Usando a variável */
+}
+.product-thumbnails {
+    list-style: none;
+    padding: 0;
+}
+.product-thumbnails li {
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 0.25rem;
+}
+.product-thumbnails li.active {
+    border-color: #0d6efd; /* Cor primária do Bootstrap */
+}
+.product-thumbnails img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+.color-option,
+.memory-option {
+    border: 1px solid #dee2e6;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.color-option:hover,
+.memory-option:hover {
+    border-color: #0d6efd;
+}
+.color-option.active,
+.memory-option.active {
+    border-color: #0d6efd;
+    border-width: 2px;
+}
+.color-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+/* Classes para as cores específicas usando variáveis */
+.color-swatch.preto {
+    background-color: var(--cor-produto-preto);
+}
+.color-swatch.azul {
+    background-color: var(--cor-produto-azul);
+}
+.color-swatch.prata {
+    background-color: var(--cor-produto-prata);
+}
+
+/* Classe para o seletor de quantidade */
+.quantity-selector {
+    width: auto;
+}

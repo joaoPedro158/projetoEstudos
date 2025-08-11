@@ -3,10 +3,8 @@
 <link rel="stylesheet" href="{{ asset('css/cores.css') }}">
 <link rel="stylesheet" href="{{ asset('css/adicionarProduto.css') }}">
 @endpush
-@section('title', 'Adionar Produto')
+@section('title', 'Adicionar Produto')
 @section('conteudo')
-
-
 
         <!-- Seção Principal com o Formulário de Cadastro de Produto -->
         <main class="container my-5">
@@ -18,33 +16,31 @@
                             <h4 class="mb-0">Cadastrar Novo Produto</h4>
                         </div>
                         <div class="card-body p-4 p-md-5">
-                            {{-- O formulário deve apontar para a sua rota de salvar o produto --}}
-                            {{-- enctype="multipart/form-data" é ESSENCIAL para upload de imagens --}}
-                            <form method="POST" action="{{-- route('products.store') --}}" enctype="multipart/form-data">
-                                @csrf {{-- Token de segurança do Laravel --}}
+                            <form method="POST" action="{{ route('adicionarProduto.store')}}" enctype="multipart/form-data">
+                                @csrf
 
                                 <!-- Campo Imagem do Produto -->
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Imagem do Produto</label>
-                                    <input type="file" class="form-control" id="image" name="image" required>
+                                    <input type="file" class="form-control" id="image" name="imagem" required>
                                 </div>
 
                                 <!-- Campo Nome do Produto -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nome do Produto</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Ex: Celular Samsung Galaxy" required>
+                                    <input type="text" class="form-control" id="name" name="nome" placeholder="Ex: Celular Samsung Galaxy" required>
                                 </div>
 
                                 <!-- Campo Preço -->
                                 <div class="mb-3">
                                     <label for="price" class="form-label">Preço (R$)</label>
-                                    <input type="number" class="form-control" id="price" name="price" placeholder="Ex: 1299.90" step="0.01" required>
+                                    <input type="number" class="form-control" id="price" name="preco" placeholder="Ex: 1299.90" step="0.01" required>
                                 </div>
 
                                 <!-- Campo Descrição -->
                                 <div class="mb-4">
                                     <label for="description" class="form-label">Descrição</label>
-                                    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Detalhes sobre o produto, especificações, etc."></textarea>
+                                    <textarea class="form-control" id="description" name="descricao" rows="4" placeholder="Detalhes sobre o produto, especificações, etc."></textarea>
                                 </div>
 
                                 <!-- Botão de Cadastro -->

@@ -85,7 +85,7 @@
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Ofertas</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Cupons</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Baixe o App</a></li>
-                                <li class="nav-item px-2"><a class="nav-link" href="{{route('adicionarProduto.index')}}">Adionar Produto</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" href="{{route('adicionarProduto.index')}}">Adicionar Produto</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="{{route('Financias.index')}}">Controle finançeiro</a></li>
                             </ul>
                         </div>
