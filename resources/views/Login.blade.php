@@ -8,7 +8,7 @@
    <main class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
-                    
+
                     <div class="card shadow-lg border-0">
                         <div class="card-header text-white text-center py-3" style="background-color: #1C3D5A;">
                             <h4 class="mb-0">Acessar sua Conta</h4>
@@ -58,5 +58,17 @@
                 </div>
             </div>
         </main>
+
+        @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+        @endif
 
 @endsection

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-      
+
          <title>@yield('title', 'meu site de laravel')</title>
 
         <!-- Fonts -->
@@ -17,9 +17,9 @@
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-        
-       
-    </head> 
+
+
+    </head>
     <body>
      <!-- INÍCIO DO HEADER -->
         <header style="background-color: #1C3D5A; padding-top: 1rem; padding-bottom: 1rem;">
@@ -32,7 +32,7 @@
                             <h1 class="text-white mb-0">Bazzary</h1>
                         </a>
                     </div>
-                    
+
                     <!-- Coluna do Meio: Barra de Pesquisa -->
                     <div class="col-md-6 my-2 my-md-0">
                         <form class="w-100" role="search">
@@ -85,6 +85,7 @@
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Cupons</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Baixe o App</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" href="#">Ajuda</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" href="{{route('Financias.index')}}">Controle finançeiro</a></li>
                             </ul>
                         </div>
 

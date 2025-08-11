@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\controllerCategoria;
 use App\Http\Controllers\CriarContaController;
-use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FinanciasController;
 
 Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
@@ -24,3 +24,6 @@ Route::get('/login', [LoginController::class, 'index'])
 
 Route::post('/CriarConta', [CriarContaController::class, 'store'])
     ->name('CriarConta.store');
+
+Route::get('/Financias', [FinanciasController::class, 'index'])
+    ->name('Financias.index');
