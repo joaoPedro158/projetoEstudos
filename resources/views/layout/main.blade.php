@@ -48,7 +48,7 @@
 
                     <!-- Coluna da Direita: Ícones -->
                     <div class="col-md-3 d-flex justify-content-center justify-content-md-end align-items-center">
-                        <a href="#" class="text-white me-4 fs-4">
+                        <a href="{{ route('carinhoCompra.index') }}" class="text-white me-4 fs-4">
                             <i class="bi bi-cart3"></i> <!-- Ícone de Carrinho -->
                         </a>
                         <a href="#" class="text-white fs-4">

@@ -55,3 +55,25 @@
             </div>
 </main>
 @endsection
+
+@push('scripts')
+    {{-- 2. Adiciona o JavaScript do SweetAlert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    {{-- 3. Script para mostrar o SweetAlert se houver uma mensagem de sucesso (MODIFICADO) --}}
+    @if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Dispara um alerta centralizado que some sozinho
+                Swal.fire({
+                  position: 'center', // Posição no meio da tela
+                  icon: 'success',
+                  title: "{{ session('success') }}",
+                  showConfirmButton: false, // Remove o botão de confirmação
+                  timer: 3000, // Desaparece em 3 segundos
+                  timerProgressBar: true
+                });
+            });
+        </script>
+    @endif
+@endpush

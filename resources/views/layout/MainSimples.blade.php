@@ -18,8 +18,7 @@
 
         <!-- SweetAlert2 CSS -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <!-- chart.js-->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
 
@@ -55,11 +54,19 @@
             @yield('conteudo')
         </main>
 
-         <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-         <script src="/js/script.js"></script>
-        <footer>
+          <footer>
             <p>&copy; {{ date('Y') }} Projeto Estudos. All rights reserved.</p>
         </footer>
+
+         <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+        <!-- chart.js-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script src="/js/script.js"></script>
+
+        @stack('scripts')
+
     </body>
 </html>

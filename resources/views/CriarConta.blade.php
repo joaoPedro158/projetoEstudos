@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/Cores.css') }}">
 <link rel="stylesheet" href="{{ asset('css/CriarConta.css') }}">
 @endpush
-@section('title', 'cadastro')
+@section('title', 'cadastro') 
 @section('conteudo')
 
     <main class="container my-5">
