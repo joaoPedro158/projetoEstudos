@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @push('styles')
 
 <link rel="stylesheet" href="{{ asset('css/produto-card.css') }}">
@@ -18,7 +18,7 @@
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 
         @foreach ($produto as $item)
-            
+
             <x-produto-card :produto="$item" />
         @endforeach
     </div>

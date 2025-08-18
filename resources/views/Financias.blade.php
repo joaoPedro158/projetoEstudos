@@ -1,4 +1,4 @@
-@extends('layout.MainSimples')
+@extends('layouts.MainSimples')
 
 @section('title', 'Controle Financeiro')
 @section('conteudo')

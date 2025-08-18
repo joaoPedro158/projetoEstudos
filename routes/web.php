@@ -25,8 +25,8 @@ Route::get('/criar', [CriarContaController::class, 'index'])
 Route::post('/CriarConta', [CriarContaController::class, 'store'])
     ->name('CriarConta.store');
 
-Route::get('/login', [LoginController::class, 'index'])
-    ->name('Login.index');
+// Route::get('/login', [LoginController::class, 'index'])
+//     ->name('Login.index');
 
 Route::get('/Financias', [FinanciasController::class, 'index'])
     ->name('Financias.index');
@@ -49,6 +49,7 @@ Route::post('/adicionarProduto', [ProdutoController::class, 'store'])
     ->name('adicionarProduto.store');
 
 
+// Rota para autenticação e dashboard
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
