@@ -1,41 +1,37 @@
 @extends('layout.main')
+@push('styles')
+
+<link rel="stylesheet" href="{{ asset('css/produto-card.css') }}">
+@endpush
 @section('tittle', 'Home')
 @section('conteudo')
-        {{-- <h3>Idade: {{$idade}}</h3> --}}
-        <hr>
-        <ul>
-            @foreach($habilidades as $habilidades)
-                <li>{{$habilidades}}</li>
-            @endforeach
-        </ul>
-
-         <h1>Produtos cadastrados</h1>
-
-    <ul>
-        @foreach($produto as $item)
-            <li>
-                <strong>ID:</strong> {{ $item->id }} <br>
-                <strong>Nome:</strong> {{ $item->nome }} <br>
-                <strong>Preço:</strong> {{ $item->preco }} <br>
-                <strong>Descrição:</strong> {{ $item->descricao }}
-            </li>
-            <hr>
-        @endforeach
-    </ul>
-
-
     <div class="container my-5">
+@if ($busca)
+<h2>Buscando por: {{ $busca }}</h2>
+@else
     <h2 class="mb-4">Produtos em Destaque</h2>
-    
+
+@endif
+
+
+
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-        {{-- Loop para cada produto --}}
+
         @foreach ($produto as $item)
-            {{-- Chamando o componente e passando os dados do produto --}}
             <x-produto-card :produto="$item" />
         @endforeach
     </div>
+    @if (count($produto) == 0 && $busca)
+        <div class="alert alert-warning mt-5" role="alert">
+            Nenhum produto encontrado para "{{ $busca }}". <a href="{{ route('home.index') }}" class="alert-link">Ver todos os produtos</a>.
+        </div>
+
+    @elseif (count($produto) === 0)
+        <div class="alert alert-info  mt-5" role="alert">
+            Nenhum produto cadastrado.
+        </div>
+    @endif
 </div>
-       
+
 
 @endsection
-        

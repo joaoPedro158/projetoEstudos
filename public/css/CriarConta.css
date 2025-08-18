@@ -14,3 +14,13 @@
     border-color: var(--cor-destaque-amarela-hover);
     color: var(--cor-primaria-escura);
 }
+.btn-outline-secondary {
+    color: var(--cor-primaria-escura);
+    border-color: var(--cor-primaria-escura);
+    color: var(--cor-primaria-escura);
+}
+.btn-outline-secondary:hover {
+   color: var(--cor-destaque-amarela);
+   background-color: var(--cor-primaria-escura);
+}
+

@@ -8,16 +8,21 @@ use App\Models\Produto; // Adicione este import
 class HomeController extends Controller
 {
     public function index() {
-        $nome = 'João Pedro';
-        $idade = 25;
-        $habilidades = ['PHP', 'Laravel', 'JavaScript'];
-        $produto = Produto::all(); // Buscando os produtos
+
+        $busca = request('busca');
+
+        if ($busca) {
+            $produto = Produto::where([
+                ['nome', 'like', '%'.$busca.'%']
+            ])->get();
+        } else {
+            $produto = Produto::all(); //
+        }
+
 
         return view('welcome', [
-            'nome' => $nome,
-            'idade' => $idade,
-            'habilidades' => $habilidades,
-            'produto' => $produto // Passando para a view
+            'produto' => $produto,
+            'busca' => $busca
         ]);
     }
 }
