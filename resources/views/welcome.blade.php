@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="{{ asset('css/produto-card.css') }}">
 @endpush
-@section('tittle', 'Home')
+@section('tittle', 'Dashboard')
 @section('conteudo')
     <div class="container my-5">
 @if ($busca)
@@ -18,9 +18,14 @@
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 
         @foreach ($produto as $item)
+            
             <x-produto-card :produto="$item" />
         @endforeach
     </div>
+
+
+
+
     @if (count($produto) == 0 && $busca)
         <div class="alert alert-warning mt-5" role="alert">
             Nenhum produto encontrado para "{{ $busca }}". <a href="{{ route('home.index') }}" class="alert-link">Ver todos os produtos</a>.
