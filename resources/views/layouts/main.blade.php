@@ -103,11 +103,28 @@
                     <!-- Lado Direito: Links de Conta (MODIFICADO) -->
                     <div class="col-md-3">
                         <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-end">
-                            <li class="nav-item px-2"><a class="nav-link" href="/register">Crie
-                                    sua conta</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" href="/login">Entra</a>
-                            </li>
-                            <li class="nav-item px-2"><a class="nav-link" href="#">Vender</a></li>
+                            @guest
+                                <li class="nav-item px-2"><a class="nav-link" href="/register">Crie
+                                        sua conta</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" href="/login">Entra</a>
+                                </li>
+                            @endguest
+                            @auth
+                                <li class="nav-item px-2"><a class="nav-link" href="/dashborad">Vender</a></li>
+
+                                <li class="nav-item px-2">
+                                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                        @csrf
+                                        <a href="{{ route('logout') }}" class="nav-link"
+                                            onclick="event.preventDefault(); this.closest('form').submit();">
+                                            Sair
+                                        </a>
+                                    </form>
+
+                                    </form>
+                                </li>
+
+                            @endauth
                         </ul>
                     </div>
                 </div>
