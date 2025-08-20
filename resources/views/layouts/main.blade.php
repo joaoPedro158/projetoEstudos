@@ -89,7 +89,7 @@
                         <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-center">
                             <li class="nav-item px-2"><a class="nav-link" href="{{ route('home.index') }}">Home</a></li>
                             <li class="nav-item px-2"><a class="nav-link"
-                                    href="{{ route('categoria.index') }}">Categorias</a></li>
+                                    href="/">Categorias</a></li>
                             <li class="nav-item px-2"><a class="nav-link" href="#">Ofertas</a></li>
                             <li class="nav-item px-2"><a class="nav-link" href="#">Cupons</a></li>
                             <li class="nav-item px-2"><a class="nav-link" href="#">Baixe o App</a></li>

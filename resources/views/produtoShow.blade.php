@@ -91,8 +91,8 @@
                                     <button class="btn btn-outline-primary" type="button">Adicionar no carrinho</button>
                                 </div>
                                 <hr>
-                                <p class="small mb-1">Loja oficial da <span class="text-primary fw-bold">Samsung</span> <i class="bi bi-check-circle-fill text-primary"></i></p>
-                                <p class="small text-muted">Vendido pelo Bazzary</p>
+                                <p class="small mb-1"> Vendido por <span class="text-primary fw-bold">{{ $donoProduto['name'] }}</span> <i class="bi bi-check-circle-fill text-primary"></i></p>
+                                <p class="small text-muted">Verificado pelo Bazzary</p>
                             </div>
                         </div>
                     </div>

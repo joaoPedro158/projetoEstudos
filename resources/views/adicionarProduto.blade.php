@@ -1,77 +1,88 @@
 @extends('layouts.MainSimples')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/cores.css') }}">
 <link rel="stylesheet" href="{{ asset('css/adicionarProduto.css') }}">
 @endpush
 @section('title', 'Adicionar Produto')
 @section('conteudo')
 
-        <!-- Seção Principal com o Formulário de Cadastro de Produto -->
-        <main class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-7">
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-7">
 
-                    <div class="card shadow-lg border-0">
-                        <div class="card-header text-white text-center py-3" >
-                            <h4 class="mb-0">Cadastrar Novo Produto</h4>
-                        </div>
-                        <div class="card-body p-4 p-md-5">
-                            <form method="POST" action="{{ route('adicionarProduto.store')}}" enctype="multipart/form-data">
-                                @csrf
-
-                                <!-- Campo Imagem do Produto -->
-                                <div class="mb-3">
-                                    <label for="image" class="form-label">Imagem do Produto</label>
-                                    <input type="file" class="form-control" id="image" name="imagem" required>
-                                </div>
-
-                                <!-- Campo Nome do Produto -->
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nome do Produto</label>
-                                    <input type="text" class="form-control" id="name" name="nome" placeholder="Ex: Celular Samsung Galaxy" required>
-                                </div>
-
-                                <!-- Campo Preço -->
-                                <div class="mb-3">
-                                    <label for="price" class="form-label">Preço (R$)</label>
-                                    <input type="number" class="form-control" id="price" name="preco" placeholder="Ex: 1299.90" step="0.01" required>
-                                </div>
-
-                                <!-- Campo Descrição -->
-                                <div class="mb-4">
-                                    <label for="description" class="form-label">Descrição</label>
-                                    <textarea class="form-control" id="description" name="descricao" rows="4" placeholder="Detalhes sobre o produto, especificações, etc."></textarea>
-                                </div>
-
-                                <!-- Botão de Cadastro -->
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-custom-yellow btn-lg">Cadastrar Produto</button>
-                                </div>
-                            </form>
-                        </div>
+                <div class="card shadow-lg border-0">
+                    <div class="card-header text-white text-center py-3" >
+                        <h4 class="mb-0">Cadastrar Novo Produto</h4>
                     </div>
+                    <div class="card-body p-4 p-md-5">
+                        <form method="POST" action="{{ route('adicionarProduto.store') }}" enctype="multipart/form-data">
+                            @csrf
 
+                            <div class="mb-3">
+                                <label for="imagem" class="form-label">Imagem do Produto</label>
+                                <input type="file" class="form-control @error('imagem') is-invalid @enderror" id="imagem" name="imagem" required>
+                                @error('imagem')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text px-2">
+                                    Formatos permitidos: jpeg, png, jpg, gif. Tamanho máximo: 2MB.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome do Produto</label>
+                                <input type="text" class="form-control @error('nome') is-invalid @enderror "
+                                    id="nome" name="nome" placeholder="Ex: Celular Samsung Galaxy" value="{{ old('nome') }}" required>
+
+                                @error('nome')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="preco" class="form-label">Preço (R$)</label>
+                                <input type="number" class="form-control @error('preco') is-invalid @enderror" id="preco" name="preco"
+                                    placeholder="Ex: 1299.90" step="0.01" value="{{ old('preco') }}" required>
+                                @error('preco')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="descricao" class="form-label">Descrição</label>
+                                <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" rows="4"
+                                    placeholder="Detalhes sobre o produto, especificações, etc.">{{ old('descricao') }}</textarea>
+                                @error('descricao')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-custom-yellow btn-lg">Cadastrar Produto</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+
             </div>
-</main>
+        </div>
+    </main>
 @endsection
 
 @push('scripts')
-    {{-- 2. Adiciona o JavaScript do SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-    {{-- 3. Script para mostrar o SweetAlert se houver uma mensagem de sucesso (MODIFICADO) --}}
-    @if(session('success'))
+    @if (session('success'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Dispara um alerta centralizado que some sozinho
                 Swal.fire({
-                  position: 'center', // Posição no meio da tela
-                  icon: 'success',
-                  title: "{{ session('success') }}",
-                  showConfirmButton: false, // Remove o botão de confirmação
-                  timer: 3000, // Desaparece em 3 segundos
-                  timerProgressBar: true
+                    position: 'center',
+                    icon: 'success',
+                    title: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
                 });
             });
         </script>

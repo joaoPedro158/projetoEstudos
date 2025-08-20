@@ -5,44 +5,41 @@ namespace App\Http\Controllers;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\User;
 
 class ProdutoController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         return view('adicionarProduto');
     }
 
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
+   public function store(Request $request) {
+        $dadosValidados = $request->validate([
             'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
             'preco' => 'required|numeric',
         ]);
 
-        // Salvar imagem e pegar caminho
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+
+        $dadosValidados['user_id'] = auth()->user()->id;
+
+
+        if ($request->hasFile('imagem')) {
             $caminhoImagem = $request->file('imagem')->store('produtos', 'public');
-            $validatedData['imagem'] = $caminhoImagem;
+            $dadosValidados['imagem'] = $caminhoImagem;
         }
 
-           // Criar o registro no banco
-        Produto::create($validatedData);
+        // Cria o produto com todos os dados, incluindo o user_id
+        Produto::create($dadosValidados);
 
-
-        // Redirecionar ou retornar uma resposta após salvar o produto
         return redirect()->route('adicionarProduto.index')->with('success', 'Produto adicionado com sucesso!');
     }
 
-
-        public function show($id)
-    {
+    public function show($id) {
         $produto = Produto::findOrFail($id);
-        return view('show', compact('produto'));
+
+        $donoProduto = User::where('id', $produto->user_id)->first()->toArray();
+        return view('produtoShow', compact('produto', 'donoProduto'));
     }
 }
-
-
-
