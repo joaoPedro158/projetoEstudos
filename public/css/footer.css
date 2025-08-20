@@ -1,0 +1,37 @@
+.footer-bazzary {
+            background-color: var(--cor-fundo-footer);
+            color: var(--cor-texto-secundario);
+            font-size: 0.9rem;
+        }
+
+        .footer-bazzary .footer-title {
+            font-weight: 700;
+            color: var(--cor-texto-primario);
+            margin-bottom: 1rem;
+        }
+
+        .footer-bazzary .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-bazzary .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bazzary .footer-links a {
+            text-decoration: none;
+            color: var(--cor-texto-secundario);
+            transition: color 0.2s ease-in-out;
+        }
+
+        .footer-bazzary .footer-links a:hover {
+            color: var(--cor-primaria-escura);
+            text-decoration: underline;
+        }
+
+        .footer-bazzary .social-links .bi {
+            font-size: 1.2rem;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
