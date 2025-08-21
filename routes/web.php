@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\controllerCategoria;
-// use App\Http\Controllers\CriarContaController;
-// use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FinanciasController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\carinhoCompraController;
@@ -13,21 +10,19 @@ use App\Http\Controllers\carinhoCompraController;
 Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
 
-// Route::get('/criar', [CriarContaController::class, 'index'])
-//     ->name('CriarConta.index');
-
-// Route::post('/CriarConta', [CriarContaController::class, 'store'])
-//     ->name('CriarConta.store');
-
 Route::get('/Financias', [FinanciasController::class, 'index'])
     ->name('Financias.index');
 
-Route::get('/produto/{id}', [ProdutoController::class, 'show'])
-    ->name('produto.show');
+
+
+// Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])
+//     ->name('produto.destroy');
 
 Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
     ->name('carinhoCompra.index');
 
+Route::get('/produto/{id}', [ProdutoController::class, 'show'])
+    ->name('produto.show');
 
     // Rota para logados
 Route::get('/adicionarProduto', [ProdutoController::class, 'index'])
@@ -37,14 +32,10 @@ Route::get('/adicionarProduto', [ProdutoController::class, 'index'])
 Route::post('/adicionarProduto', [ProdutoController::class, 'store'])
     ->name('adicionarProduto.store');
 
+Route::get('/dashboard', [ProdutoController::class, 'dashboard'])
+    ->middleware('auth')
+    ->name('Dashboard');
 
-// Rota para autenticação e dashboard
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+
+
+

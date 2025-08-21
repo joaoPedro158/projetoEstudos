@@ -10,12 +10,14 @@
         @else
             <h2 class="mb-4">Produtos em Destaque</h2>
         @endif
+        <div class="shadow   rounded-3 py-3">
 
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-around">
 
-            @foreach ($produto as $item)
-                <x-produto-card :produto="$item" />
-            @endforeach
+                @foreach ($produto as $item)
+                    <x-produto-card :produto="$item" />
+                @endforeach
+            </div>
         </div>
 
 

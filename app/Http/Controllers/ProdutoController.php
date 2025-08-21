@@ -10,7 +10,7 @@ use App\Models\User;
 class ProdutoController extends Controller
 {
     public function index() {
-        return view('adicionarProduto');
+        return view('produto.adicionarProduto');
     }
 
    public function store(Request $request) {
@@ -30,7 +30,6 @@ class ProdutoController extends Controller
             $dadosValidados['imagem'] = $caminhoImagem;
         }
 
-        // Cria o produto com todos os dados, incluindo o user_id
         Produto::create($dadosValidados);
 
         return redirect()->route('adicionarProduto.index')->with('success', 'Produto adicionado com sucesso!');
@@ -40,6 +39,18 @@ class ProdutoController extends Controller
         $produto = Produto::findOrFail($id);
 
         $donoProduto = User::where('id', $produto->user_id)->first()->toArray();
-        return view('produtoShow', compact('produto', 'donoProduto'));
+        return view('produto.produtoShow', compact('produto', 'donoProduto'));
     }
+
+    public function dashboard(Request $request) {
+        // $produtos = Produto::where('user_id', auth()->user()->id)->get();
+        return view('produto.dashboard');
+    }
+
+    // public function destroy($id) {
+    //     $produto = Produto::findOrFail($id);
+    //     $produto->delete();
+
+    //     return redirect('/')->route('produto.Produto.index')->with('success', 'Produto removido com sucesso!');
+    // }
 }

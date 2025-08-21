@@ -111,7 +111,7 @@
                                 </li>
                             @endguest
                             @auth
-                                <li class="nav-item px-2"><a class="nav-link" href="/dashborad">Vender</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" href="{{ route('Dashboard') }}">Dashboard</a></li>
 
                                 <li class="nav-item px-2">
                                     <form method="POST" action="{{ route('logout') }}" class="d-inline">
