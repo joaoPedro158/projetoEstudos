@@ -29,7 +29,7 @@
                     <ul class="list-unstyled mb-0">
 
                         @foreach ($carinhoCompra as $item)
-                            <x-carinho-card :produto="$item" />
+                            <x-produto.carinho-card :produto="$item" />
                         @endforeach
                     </ul>
 

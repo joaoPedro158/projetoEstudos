@@ -19,6 +19,7 @@ class ProdutoController extends Controller
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
             'preco' => 'required|numeric',
+            'estoque' => 'nullable|integer|min:1',
         ]);
 
 
@@ -43,8 +44,13 @@ class ProdutoController extends Controller
     }
 
     public function dashboard(Request $request) {
-        // $produtos = Produto::where('user_id', auth()->user()->id)->get();
-        return view('produto.dashboard');
+
+        $usuario = auth()->user();
+
+        $produtoDoUsuario = $usuario->produtos;
+
+
+        return view('produto.dashboard', compact('produtoDoUsuario',));
     }
 
     // public function destroy($id) {

@@ -15,7 +15,7 @@
             <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-around">
 
                 @foreach ($produto as $item)
-                    <x-produto-card :produto="$item" />
+                    <x-produto.produto-card :produto="$item" />
                 @endforeach
             </div>
         </div>

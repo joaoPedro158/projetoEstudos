@@ -49,6 +49,15 @@
                                 @enderror
                             </div>
 
+                             <div class="mb-3">
+                                <label for="estoque" class="form-label">quantidade de estoque</label>
+                                <input type="number" class="form-control @error('estoque') is-invalid @enderror" id="estoque" name="estoque"
+                                     value="{{ old('estoque') }}">
+                                @error('estoque')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="mb-4">
                                 <label for="descricao" class="form-label">Descrição</label>
                                 <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" rows="4"

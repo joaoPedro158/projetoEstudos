@@ -78,7 +78,7 @@
                             <div class="card-body">
                                 <p class="text-success fw-bold mb-1">Chegada Grátis</p>
                                 <p class="small text-muted">Comprado dentro das próximas 8h</p>
-                                <p class="fw-bold">Estoque Disponível</p>
+                                <p class="fw-bold">Estoque Disponível: {{ $produto->estoque }}</p>
                                 <div class="mb-3">
                                     <label for="quantity" class="form-label small">Quantidade:</label>
                                     <select class="form-select form-select-sm" id="quantity" style="width: auto;">

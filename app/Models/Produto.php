@@ -19,7 +19,8 @@ class Produto extends Model
         'nome',
         'descricao',
         'preco',
-        'user_id' 
+        'estoque',
+        'user_id'
     ];
 
     /**
