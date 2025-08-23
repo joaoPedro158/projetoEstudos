@@ -53,10 +53,10 @@ class ProdutoController extends Controller
         return view('produto.dashboard', compact('produtoDoUsuario',));
     }
 
-    // public function destroy($id) {
-    //     $produto = Produto::findOrFail($id);
-    //     $produto->delete();
+    public function destroy($id) {
+        $produto = Produto::findOrFail($id);
+        $produto->delete();
 
-    //     return redirect('/')->route('produto.Produto.index')->with('success', 'Produto removido com sucesso!');
-    // }
+        return redirect()->route('Dashboard')->with('success', 'Produto removido com sucesso!');
+    }
 }

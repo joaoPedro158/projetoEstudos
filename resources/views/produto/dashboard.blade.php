@@ -72,52 +72,95 @@
         </div>
 
         <!-- Card com a Tabela de Produtos -->
-        <div class="card border-0 shadow-sm">
-            <div class="card-body p-1">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Imagem</th>
-                                <th scope="col">Nome do Produto</th>
-                                <th scope="col">Preço</th>
-                                <th scope="col">Estoque</th>
-                                <th scope="col">Data de Cadastro</th>
-                                <th scope="col">Status</th>
-                                <th scope="col" class="text-end">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach ($produtoDoUsuario as $item)
+        @if (count($produtoDoUsuario) === 0)
+            <div class="alert alert-info  mt-5" role="alert">
+                Nenhum produto cadastrado.
+            </div>
+        @else
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-1">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
                                 <tr>
-                                    <th scope="row"> {{ $loop->index + 1 }}</th>
-                                    <td><img src="{{ asset('storage/' . $item->imagem) }}" alt="iamgem do produto"
-                                            class="product-image-sm"></td>
-                                    <td><a href="/produto/{{ $item->id }}" class="text-decoration-none">{{ $item->nome }}</a></td>
-                                    <td>{{ $item->preco }}</td>
-                                    <td>{{ $item->estoque }}</td>
-                                    <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                                    <td>{{ $item->preco }}</td>
-                                    <td class="text-end">
-                                        <button class="btn btn-sm btn-outline-secondary"><i
-                                                class="bi bi-pencil-fill"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger"><i
-                                                class="bi bi-trash-fill"></i></button>
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Imagem</th>
+                                    <th scope="col">Nome do Produto</th>
+                                    <th scope="col">Preço</th>
+                                    <th scope="col">Estoque</th>
+                                    <th scope="col">Data de Cadastro</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col" class="text-center">Ações</th>
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
+                                @foreach ($produtoDoUsuario as $item)
+                                    <tr>
+                                        <th scope="row"> {{ $loop->index + 1 }}</th>
+                                        <td><img src="{{ asset('storage/' . $item->imagem) }}" alt="iamgem do produto"
+                                                class="product-image-sm"></td>
+                                        <td><a href="/produto/{{ $item->id }}"
+                                                class="text-decoration-none">{{ $item->nome }}</a></td>
+                                        <td>{{ $item->preco }}</td>
+                                        <td>{{ $item->estoque }}</td>
+                                        <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                                        <td>{{ $item->preco }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-outline-secondary"><i
+                                                    class="bi bi-pencil-fill"></i></button>
+
+                                            <form action="/produto/{{ $item->id }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger"><i
+                                                        class="bi bi-trash-fill"></i></button>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+
+
+        @endif
     </main>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+     @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+
+
+        Toast.fire({
+           iconHtml: '<i class="bi bi-trash-fill text-danger "></i>',
+          title: "{{ session('success') }}"
+        });
+    });
+        </script>
+    @endif
 </body>
 
 </html>

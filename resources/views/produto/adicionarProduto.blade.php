@@ -83,17 +83,27 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
     @if (session('success'))
-        <script>
+         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: "{{ session('success') }}",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true
-                });
-            });
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+
+
+        Toast.fire({
+          icon: 'success',
+          title: "{{ session('success') }}"
+        });
+    });
         </script>
     @endif
 @endpush

@@ -13,16 +13,14 @@ Route::get('/',[HomeController::class, 'index'])
 Route::get('/Financias', [FinanciasController::class, 'index'])
     ->name('Financias.index');
 
-
-
-// Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])
-//     ->name('produto.destroy');
-
 Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
     ->name('carinhoCompra.index');
 
 Route::get('/produto/{id}', [ProdutoController::class, 'show'])
     ->name('produto.show');
+
+Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])
+    ->name('produto.destroy');
 
     // Rota para logados
 Route::get('/adicionarProduto', [ProdutoController::class, 'index'])
