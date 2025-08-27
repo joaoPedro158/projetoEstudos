@@ -10,15 +10,19 @@
         @else
             <h2 class="mb-4">Produtos em Destaque</h2>
         @endif
-        <div class="shadow   rounded-3 py-3">
 
-            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-around">
+        @if (count($produto) > 0)
 
-                @foreach ($produto as $item)
-                    <x-produto.produto-card :produto="$item" />
-                @endforeach
+            <div class="shadow rounded-3 py-3 caixa produto">
+
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-around">
+
+                    @foreach ($produto as $item)
+                        <x-produto.produto-card :produto="$item" />
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
 
 
 

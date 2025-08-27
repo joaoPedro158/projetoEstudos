@@ -107,10 +107,12 @@
                                         <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                         <td>{{ $item->preco }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-sm btn-outline-secondary"><i
-                                                    class="bi bi-pencil-fill"></i></button>
+                                            <a href="{{ route('produto.edit', ['id' => $item->id]) }}">
+                                                <button class="btn btn-sm btn-outline-secondary"><i
+                                                        class="bi bi-pencil-fill"></i></button>
+                                            </a>
 
-                                            <form action="/produto/{{ $item->id }}" method="POST" class="d-inline">
+                                            <form action="{{ route('produto.destroy', ['id' => $item->id]) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-outline-danger"><i

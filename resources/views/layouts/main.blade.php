@@ -96,8 +96,7 @@
                             <li class="nav-item px-2"><a class="nav-link" href="#">Baixe o App</a></li>
                             <li class="nav-item px-2"><a class="nav-link"
                                     href="{{ route('adicionarProduto.index') }}">Adicionar Produto</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" href="{{ route('Financias.index') }}">Controle
-                                    finançeiro</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" href="{{ route('favoritos.index') }}">Favoritos</a></li>
                         </ul>
                     </div>
 

@@ -59,4 +59,29 @@ class ProdutoController extends Controller
 
         return redirect()->route('Dashboard')->with('success', 'Produto removido com sucesso!');
     }
+
+    public function edit($id) {
+        $produto = Produto::findOrFail($id);
+
+        return view('produto.edit', compact('produto'));
+    }
+
+    public function update(Request $request) {
+        $dadosValidados = $request->validate([
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nome' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'preco' => 'required|numeric',
+            'estoque' => 'nullable|integer|min:1',
+        ]);
+
+        if ($request->hasFile('imagem')) {
+            $caminhoImagem = $request->file('imagem')->store('produtos', 'public');
+            $dadosValidados['imagem'] = $caminhoImagem;
+        }
+
+        Produto::where('id', $request->id)->update($dadosValidados);
+
+        return redirect()->route('Dashboard')->with('success', 'Produto atualizado com sucesso!');
+    }
 }

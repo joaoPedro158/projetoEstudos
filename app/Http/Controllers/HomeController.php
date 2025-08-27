@@ -19,6 +19,6 @@ class HomeController extends Controller
             $produto = Produto::all(); //
         }
 
-        return view('welcome', compact('produto', 'busca'));
+        return view('home', compact('produto', 'busca'));
     }
 }
