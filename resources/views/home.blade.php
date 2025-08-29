@@ -12,7 +12,7 @@
         @endif
 
         @if (count($produto) > 0)
-
+ 
             <div class="shadow rounded-3 py-3 caixa produto">
 
                 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-around">

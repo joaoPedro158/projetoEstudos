@@ -17,7 +17,8 @@ Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
 
     //rotas farovitos
 Route::get('/favoritos', [FavoritosController::class, 'index'])
-    ->name('favoritos.index');
+    ->name('favoritos.index')
+    ->middleware('auth');
 
 Route::post('/favoritos/adicionar', [FavoritosController::class, 'adicionar'])
     ->name('favoritos.adicionar');

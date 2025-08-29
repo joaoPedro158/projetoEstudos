@@ -40,19 +40,22 @@
                             <a href="#" class="ms-2 text-muted">(1233)</a>
 
                          @auth
-                               <form action="{{ route("favoritos.adicionar") }}" method="POST" class="ms-auto">
-                                   @csrf
-                                   <input type="hidden" name="produto_id" value="{{ $produto->id }}">
-                                       <button type="submit"
-                                           class="bi bi-heart fs-4 borde-none border-0 rounded-circle p-2 lh-1 btn-favorito"></button>
-                               </form>
-                               
-                               <form action="{{ route("favoritos.remover") }}" method="POST" class="ms-auto">
+                            @if(in_array($produto->id, $favoritosIds))
+                            <form action="{{ route('favoritos.remover') }}" method="POST" class="ms-auto">
                                    @csrf
                                    <input type="hidden" name="produto_id" value="{{ $produto->id }}">
                                        <button type="submit"
                                            class="bi bi-heart-fill fs-4 borde-none border-0 rounded-circle p-2 lh-1 btn-favorito text-danger"></button>
                                </form>
+
+                            @else
+                               <form action="{{ route('favoritos.adicionar') }}" method="POST" class="ms-auto">
+                                   @csrf
+                                   <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                       <button type="submit"
+                                           class="bi bi-heart fs-4 borde-none border-0 rounded-circle p-2 lh-1 btn-favorito"></button>
+                               </form>
+                            @endif
                          @endauth
                         </div>
 

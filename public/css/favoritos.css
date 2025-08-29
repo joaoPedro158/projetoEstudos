@@ -25,3 +25,7 @@
 .btn-remove-wishlist:hover {
     color: var(--cor-primaria-escura);
 }
+.icone {
+    font-size: 2.5rem;
+    color: var(--cor-primaria-escura);
+}

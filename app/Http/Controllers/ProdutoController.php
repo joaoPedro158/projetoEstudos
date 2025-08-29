@@ -37,10 +37,14 @@ class ProdutoController extends Controller
     }
 
     public function show($id) {
+        $usuario = auth()->user();
         $produto = Produto::findOrFail($id);
 
         $donoProduto = User::where('id', $produto->user_id)->first()->toArray();
-        return view('produto.produtoShow', compact('produto', 'donoProduto'));
+
+        $favoritosIds = auth()->check() ? auth()->user()->favoritos()->pluck('produtos.id')->toArray() : [];
+        $produtos = Produto::all();
+        return view('produto.produtoShow', compact('produto', 'donoProduto', 'favoritosIds', 'produtos'));
     }
 
     public function dashboard(Request $request) {
