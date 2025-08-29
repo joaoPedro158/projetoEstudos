@@ -1,6 +1,7 @@
 body {
-  background-color: var(--cor-fundo-claro);
-  color: var(--cor-texto-principal);
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto-principal);
+    height: 100vh;
 }
 
 header.header {
@@ -8,11 +9,11 @@ header.header {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
-.navbar{
+.navbar {
     background-color: var(--cor-primaria-escura);
 }
 
-.d-block{
+.d-block {
     font-size: 0.8rem;
     line-height: 1;
 }
@@ -29,5 +30,5 @@ header.header {
 
 main {
     padding: 2rem;
+    height: 80%;
 }
-

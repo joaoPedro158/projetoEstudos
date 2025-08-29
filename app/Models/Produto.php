@@ -30,4 +30,9 @@ class Produto extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+   public function usuariosFavoritaram()
+    {
+        return $this->belongsToMany(User::class, 'favoritos');
+    }
 }

@@ -10,21 +10,28 @@ use App\Http\Controllers\carinhoCompraController;
 Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
 
-Route::get('/favoritos', [FavoritosController::class, 'index'])
-    ->name('favoritos.index');
+
 
 Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
     ->name('carinhoCompra.index');
 
-Route::get('/produto/{id}', [ProdutoController::class, 'show'])
-    ->name('produto.show');
+    //rotas farovitos
+Route::get('/favoritos', [FavoritosController::class, 'index'])
+    ->name('favoritos.index');
 
+Route::post('/favoritos/adicionar', [FavoritosController::class, 'adicionar'])
+    ->name('favoritos.adicionar');
 
+Route::post('/favoritos/remover', [FavoritosController::class, 'remover'])
+    ->name('favoritos.remover');
 
-    // Rota para logados
+    // rotas porduto
 Route::get('/adicionarProduto', [ProdutoController::class, 'index'])
     ->middleware('auth')
     ->name('adicionarProduto.index');
+
+Route::get('/produto/{id}', [ProdutoController::class, 'show'])
+    ->name('produto.show');
 
 Route::post('/adicionarProduto', [ProdutoController::class, 'store'])
     ->name('adicionarProduto.store');

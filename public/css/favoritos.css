@@ -1,0 +1,27 @@
+.wishlist-product-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.wishlist-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.wishlist-product-card .card-img-top {
+    height: 200px;
+    object-fit: contain;
+    padding: 1rem;
+}
+.btn-add-to-cart {
+    background-color: var(--cor-primaria-escura);
+    color: white;
+    font-weight: 600;
+}
+.btn-add-to-cart:hover {
+    background-color: #152d44;
+    color: white;
+}
+.btn-remove-wishlist {
+    color: var(--cor-texto-secundario);
+}
+.btn-remove-wishlist:hover {
+    color: var(--cor-primaria-escura);
+}

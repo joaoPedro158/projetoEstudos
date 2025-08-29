@@ -6,7 +6,7 @@
 @section('title', $produto->nome)
 @section('conteudo')
 
-<div class="container my-5">
+    <div class="container my-5">
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -21,7 +21,8 @@
                         </ul>
                         <!-- Imagem Principal -->
                         <div class="main-image-container flex-grow-1">
-                            <img src="{{ asset('storage/' . $produto->imagem) }}" class="img-fluid" alt="Imagem Principal do Produto">
+                            <img src="{{ asset('storage/' . $produto->imagem) }}" class="img-fluid"
+                                alt="Imagem Principal do Produto">
                         </div>
                     </div>
 
@@ -37,10 +38,27 @@
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-half text-warning"></i>
                             <a href="#" class="ms-2 text-muted">(1233)</a>
+
+                         @auth
+                               <form action="{{ route("favoritos.adicionar") }}" method="POST" class="ms-auto">
+                                   @csrf
+                                   <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                       <button type="submit"
+                                           class="bi bi-heart fs-4 borde-none border-0 rounded-circle p-2 lh-1 btn-favorito"></button>
+                               </form>
+                               
+                               <form action="{{ route("favoritos.remover") }}" method="POST" class="ms-auto">
+                                   @csrf
+                                   <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                       <button type="submit"
+                                           class="bi bi-heart-fill fs-4 borde-none border-0 rounded-circle p-2 lh-1 btn-favorito text-danger"></button>
+                               </form>
+                         @endauth
                         </div>
 
                         <p class="text-muted text-decoration-line-through mb-1">R$ 2.838,95</p>
-                        <p class="h2 fw-bold mb-1">R${{ $produto->preco}} <span class="fs-6 text-success fw-normal">37% off no Pix ou no débito</span></p>
+                        <p class="h2 fw-bold mb-1">R${{ $produto->preco }} <span class="fs-6 text-success fw-normal">37%
+                                off no Pix ou no débito</span></p>
                         <p class="text-muted">ou R$2.099 em 21x R$99,95 sem juros com seu cartão de crédito</p>
 
                         <!-- Opções de Cor -->
@@ -62,12 +80,12 @@
 
 
 
-                    <div class="mt-4">
-                        <h5 class="h6 fw-bold">Descrição</h5>
-                        <p class="text-muted small">
-                            {{ $produto->descricao }}
-                        </p>
-                    </div>
+                        <div class="mt-4">
+                            <h5 class="h6 fw-bold">Descrição</h5>
+                            <p class="text-muted small">
+                                {{ $produto->descricao }}
+                            </p>
+                        </div>
                     </div>
 
 
@@ -91,7 +109,9 @@
                                     <button class="btn btn-outline-primary" type="button">Adicionar no carrinho</button>
                                 </div>
                                 <hr>
-                                <p class="small mb-1"> Vendido por <span class="text-primary fw-bold">{{ $donoProduto['name'] }}</span> <i class="bi bi-check-circle-fill text-primary"></i></p>
+                                <p class="small mb-1"> Vendido por <span
+                                        class="text-primary fw-bold">{{ $donoProduto['name'] }}</span> <i
+                                        class="bi bi-check-circle-fill text-primary"></i></p>
                                 <p class="small text-muted">Verificado pelo Bazzary</p>
                             </div>
                         </div>
