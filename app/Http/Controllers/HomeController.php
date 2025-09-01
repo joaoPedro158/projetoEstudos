@@ -16,9 +16,15 @@ class HomeController extends Controller
                 ['nome', 'like', '%'.$busca.'%']
             ])->get();
         } else {
-            $produto = Produto::all(); //
+            $produto = Produto::all();
         }
 
-        return view('home', compact('produto', 'busca'));
+        $produtoDestaque =Produto::orderBydesc('preco')
+            ->take(8)
+            ->get()
+            ->chunk(4);
+
+
+        return view('home', compact('produto', 'busca', 'produtoDestaque'));
     }
 }
