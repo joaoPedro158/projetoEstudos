@@ -1,8 +1,19 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
 body {
     background-color: var(--cor-fundo-claro);
     color: var(--cor-texto-principal);
     height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
 }
+
 
 header.header {
     background-color: var(--cor-primaria-escura);
@@ -28,7 +39,4 @@ header.header {
     opacity: 1;
 }
 
-main {
-    padding: 2rem;
-    height: 80%;
-}
+

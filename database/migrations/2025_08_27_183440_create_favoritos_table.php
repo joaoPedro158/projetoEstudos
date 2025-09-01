@@ -16,8 +16,6 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('produto_id');
-
-            // Definindo as chaves estrangeiras
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
 
