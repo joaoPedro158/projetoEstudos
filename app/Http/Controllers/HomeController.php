@@ -8,7 +8,6 @@ use App\Models\Produto; // Adicione este import
 class HomeController extends Controller
 {
     public function index() {
-
         $busca = request('busca');
 
         if ($busca) {

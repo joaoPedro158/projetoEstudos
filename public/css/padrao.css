@@ -9,9 +9,12 @@ body {
     background-color: var(--cor-fundo-claro);
     color: var(--cor-texto-principal);
     height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+  
 
+}
+main {
+ height: auto;
+  min-height: 65dvh;
 }
 
 

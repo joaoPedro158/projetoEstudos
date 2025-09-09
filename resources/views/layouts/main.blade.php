@@ -141,7 +141,7 @@
     </script>
     <script src="/js/script.js"></script>
 
-     <footer class="footer-bazzary py-5">
+     <footer class="footer-bazzary py-5 mt-5">
         <div class="container">
             <div class="row">
                 <!-- Coluna 1: Atendimento ao Cliente -->

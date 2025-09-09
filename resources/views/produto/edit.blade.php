@@ -1,7 +1,7 @@
 @extends('layouts.MainSimples')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/adicionarProduto.css') }}">
-<link rel="stylesheet" href="{{ asset('css/Produto.css') }}">
+
 @endpush
 @section('title', 'editar produto: ' . $produto->nome)
 @section('conteudo')
@@ -86,7 +86,10 @@
 @endsection
 
 @push('scripts')
-   <script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    @if (session('success'))
+         <script>
             document.addEventListener('DOMContentLoaded', function() {
 
         const Toast = Swal.mixin({

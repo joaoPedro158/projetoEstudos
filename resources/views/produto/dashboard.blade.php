@@ -139,7 +139,7 @@
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-     @if (session('success'))
+     @if (session('delete'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
 
@@ -158,11 +158,36 @@
 
         Toast.fire({
            iconHtml: '<i class="bi bi-trash-fill text-danger "></i>',
-          title: "{{ session('success') }}"
+          title: "{{ session('delete') }}"
         });
     });
         </script>
     @endif
+
+        @if (session('editado'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            });
+
+
+            Toast.fire({
+            icon: 'success',
+            title: "{{ session('editado') }}"
+            });
+        });
+            </script>
+        @endif
 </body>
 
 </html>

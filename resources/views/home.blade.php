@@ -15,46 +15,50 @@
 
         @if (count($produto) > 0)
 
-            <div class="container my-5 p-2 shadow rounded-3 ">
-                <div id="carrosselMultiplosCards" class="carousel slide carousel-dark" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+            @if (count($produto) > 10)
+                <div class="container my-5 p-2 shadow rounded-3 ">
+                    <div id="carrosselMultiplosCards" class="carousel slide carousel-dark" data-bs-ride="carousel">
+                        <div class="carousel-inner">
 
-                        @foreach ($produtoDestaque as $index => $grupo)
-                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                <div class="row p-3 row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-                                    @foreach ($grupo as $item)
-                                        <x-produto.produto-card :produto="$item" />
-                                    @endforeach
+                            @foreach ($produtoDestaque as $index => $grupo)
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                    <div class="row p-3 row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+                                        @foreach ($grupo as $item)
+                                            <x-produto.produto-card :produto="$item" />
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
 
+                        </div>
+
+
+                        <button class="carousel-control-prev shadow" type="button" data-bs-target="#carrosselMultiplosCards"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+
+                        <button class="carousel-control-next shadow" type="button" data-bs-target="#carrosselMultiplosCards"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Próximo</span>
+                        </button>
                     </div>
+                </div>
+            @endif
 
-
-                    <button class="carousel-control-prev shadow" type="button" data-bs-target="#carrosselMultiplosCards"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-
-                    <button class="carousel-control-next shadow" type="button" data-bs-target="#carrosselMultiplosCards"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Próximo</span>
-                    </button>
+            <div class="shadow rounded-3 py-3 my-3 caixa produto">
+                <div class="row p-3 row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+                    @foreach ($produto as $item)
+                        <x-produto.produto-card :produto="$item" />
+                    @endforeach
                 </div>
             </div>
 
         @endif
 
-        <div class="shadow rounded-3 py-3 my-3 caixa produto">
-            <div class="row p-3 row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-                @foreach ($produto as $item)
-                    <x-produto.produto-card :produto="$item" />
-                @endforeach
-            </div>
-        </div>
+
 
         @if (count($produto) == 0 && $busca)
             <div class="alert alert-warning mt-5" role="alert">

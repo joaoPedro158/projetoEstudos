@@ -61,7 +61,7 @@ class ProdutoController extends Controller
         $produto = Produto::findOrFail($id);
         $produto->delete();
 
-        return redirect()->route('Dashboard')->with('success', 'Produto removido com sucesso!');
+        return redirect()->route('Dashboard')->with('delete', 'Produto removido com sucesso!');
     }
 
     public function edit($id) {
@@ -86,6 +86,6 @@ class ProdutoController extends Controller
 
         Produto::where('id', $request->id)->update($dadosValidados);
 
-        return redirect()->route('Dashboard')->with('success', 'Produto atualizado com sucesso!');
+        return redirect()->route('Dashboard')->with('editado', 'Produto atualizado com sucesso!');
     }
 }
