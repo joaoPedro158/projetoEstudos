@@ -21,7 +21,7 @@ class HomeController extends Controller
         $produtoDestaque =Produto::orderBydesc('preco')
             ->take(8)
             ->get()
-            ->chunk(4);
+            ->chunk(4); 
 
 
         return view('home', compact('produto', 'busca', 'produtoDestaque'));

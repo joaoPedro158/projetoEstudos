@@ -47,7 +47,7 @@
                     </div>
                 </div>
             @endif
-
+ 
             <div class="shadow rounded-3 py-3 my-3 caixa produto">
                 <div class="row p-3 row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
                     @foreach ($produto as $item)

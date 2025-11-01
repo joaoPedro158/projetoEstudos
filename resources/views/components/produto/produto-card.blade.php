@@ -4,9 +4,9 @@
         <div class="card h-100 shadow-sm border-0 text-decoration-none text-dark">
             {{-- Imagem do Produto --}}
             <img src="{{ asset('storage/' . $produto->imagem) }}" class="card-img-top p-3" alt="{{ $produto->nome }}">
- 
+
             {{-- Descrição do Produto --}}
-            <div class="px-3 pb-2">
+            <div class="px-3 pb-2"> 
                 <p class="text-muted small mb-0">{{ $produto->descricao }}</p>
             </div>
 

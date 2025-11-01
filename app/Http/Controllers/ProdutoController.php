@@ -19,7 +19,7 @@ class ProdutoController extends Controller
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
             'preco' => 'required|numeric',
-            'estoque' => 'nullable|integer|min:1',
+            'estoque' => 'nullable|integer|min:1', 
         ]);
 
 

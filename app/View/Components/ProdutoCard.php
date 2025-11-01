@@ -9,7 +9,7 @@ use App\Models\Produto;
 
 class ProdutoCard extends Component
 {
-     public Produto $produto; 
+     public Produto $produto;
 
     /**
      * Create a new component instance.
@@ -19,7 +19,7 @@ class ProdutoCard extends Component
     public function __construct(Produto $produto) {
         $this->produto = $produto;
     }
- 
+
     /**
      * @return Get the view / contents that represent the component.
      */

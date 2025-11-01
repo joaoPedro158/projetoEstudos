@@ -24,7 +24,7 @@
 
     @stack('styles')
 </head>
-
+ 
 <body>
     <!-- INÍCIO DO HEADER -->
     <header class="header ">
@@ -100,7 +100,6 @@
                         </ul>
                     </div>
 
-                    <!-- Lado Direito: Links de Conta (MODIFICADO) -->
                     <div class="col-md-3">
                         <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-end">
                             @guest
