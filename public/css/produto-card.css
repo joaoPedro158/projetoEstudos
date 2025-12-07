@@ -21,3 +21,20 @@
     right: -50px;
 
 }
+.truncate-text {
+    /* Define a altura máxima que você deseja para o elemento */
+    max-height: 5.5rem; /* Ajuste isso. 2.5rem é um bom valor para 2 ou 3 linhas */
+
+    /* Garante que o texto que exceder o limite seja cortado */
+    overflow: hidden;
+
+    /* A Magia do Truncamento de Linhas */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /* Define o número máximo de linhas visíveis */
+    -webkit-line-clamp: 5; /* Limita a descrição a 2 linhas */
+
+    /* Adiciona as reticências automaticamente */
+    text-overflow: ellipsis;
+    white-space: normal;
+}
