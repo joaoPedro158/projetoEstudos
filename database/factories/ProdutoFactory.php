@@ -16,18 +16,21 @@ class ProdutoFactory extends Factory
      */
     public function definition(): array
     {
-        $palavrasChaves = [
+        $produtos = [
             'camisa', 'tenis', 'notebook', 'cadeira',
             'mochila', 'celular'
         ];
 
-        $palavraChave = $this->faker->randomElement($palavrasChaves);
+        $palavraChave = $this->faker->randomElement($produtos);
+        $numero = $this->faker->randomElement(['01','02']);
 
-        $imageWidth = 640;
-        $imageHeight = 480;
+        $imgCaminho = 'produtos/' . $palavraChave . $numero . '.webp';
+
+        $produtoNome = $this->faker->unique()->sentence(2,true) . '' . ucfirst($palavraChave);
+
         return [
-            'nome' => $this->faker->unique()->sentence(3,true) . '' . ucfirst($palavraChave),
-            'imagem' => $this->faker->imageUrl($imageWidth, $imageHeight, $palavraChave),
+            'nome' => $produtoNome,
+            'imagem' => $imgCaminho,
             'preco' => $this->faker->randomFloat(2, 5.00, 999.99),
             'descricao' => $this->faker->paragraphs(2, true),
             'descricao' => $this->faker->paragraphs(2, true),
