@@ -37,19 +37,46 @@ class ProdutoController extends Controller
         return redirect()->route('adicionarProduto.index')->with('success', 'Produto adicionado com sucesso!');
     }
 
-    public function show($id, CalculoService $calculo) {
-        $usuario = auth()->user();
-        $produto = Produto::findOrFail($id);
+ public function show($id, CalculoService $calculoservice) {
+    // Usuário autenticado
+    $usuario = auth()->user();
 
-        $donoProduto = User::where('id', $produto->user_id)->first()->toArray();
+    // Busca o produto
+    $produto = Produto::findOrFail($id);
 
-        $favoritosIds = auth()->check() ? auth()->user()->favoritos()->pluck('produtos.id')->toArray() : [];
+    // Busca o dono do produto
+    $donoProduto = User::where('id', $produto->user_id)->first()->toArray();
 
-        $desconto = 15;
-        $valorFinal = $calculo->desconto($produto->preco,$desconto);
-        $produtos = Produto::all();
-        return view('produto.produtoShow', compact('produto', 'donoProduto', 'favoritosIds', 'produtos', 'valorFinal', 'desconto'));
-    }
+    // Verifica favoritos do usuário
+    $favoritosIds = auth()->check()
+        ? auth()->user()->favoritos()->pluck('produtos.id')->toArray()
+        : [];
+
+    // Calcula desconto (preço à vista)
+    $desconto = 15;
+    $valorFinal = $calculoservice->desconto($produto->preco, $desconto);
+
+    // Calcula parcelamento baseado no preço à vista (com desconto)
+    $opcoesParcelamento = $calculoservice->calcularParcelamento($valorFinal);
+    $melhorParcela = $calculoservice->melhorOpcaoParcelamento($valorFinal);
+    $maxParcelas = $calculoservice->calcularParcelasMaximas($valorFinal);
+
+    // Busca todos os produtos
+    $produtos = Produto::all();
+
+    // Retorna a view
+    return view('produto.produtoShow', compact(
+        'produto',
+        'donoProduto',
+        'favoritosIds',
+        'produtos',
+        'valorFinal',
+        'desconto',
+        'opcoesParcelamento',
+        'melhorParcela',
+        'maxParcelas'
+    ));
+}
 
     public function dashboard(Request $request) {
 

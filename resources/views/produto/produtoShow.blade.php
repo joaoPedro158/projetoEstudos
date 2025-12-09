@@ -4,8 +4,10 @@
     <link rel="stylesheet" href="{{ asset('css/Produto.css') }}">
 @endpush
 @push('script')
- @vite('resources/js/produtoShow.js')
+    @vite('resources/js/produtoShow.js')
 @endpush
+
+
 @section('title', $produto->nome)
 @section('conteudo')
 
@@ -62,11 +64,53 @@
                          @endauth
                         </div>
 
-                        <p class="mb-1 d-inline-block text-muted text-decoration-line-through">R$ {{ $produto->preco }}</p>
-                        <span class="inline-block fs-6 text-danger fw-bold ms-2">%{{ $desconto }}</span>
-                        <p class="mb-1 h2 fw-bold">R${{ $valorFinal }} <span class="fs-6 text-success fw-normal">37%
-                                off no Pix ou no débito</span></p>
-                        <p class="text-muted">ou R$2.099 em 21x R$99,95 sem juros com seu cartão de crédito</p>
+                        <!-- Preços -->
+                        <p class="mb-1 d-inline-block text-muted text-decoration-line-through">
+                            R$ {{ number_format($produto->preco, 2, ',', '.') }}
+                        </p>
+                        <span class="inline-block fs-6 fw-bold ms-2 destaque">{{ $desconto }}% OFF</span>
+
+                        <p class="mb-1 h2 fw-bold">
+                            R$ {{ number_format($valorFinal, 2, ',', '.') }}
+                            <span class="fs-6 destaque fw-normal">{{ $desconto }}% off no Pix ou no débito</span>
+                        </p>
+
+                        <!-- Parcelamento -->
+                        <div class="mb-3">
+                            <p class="mb-1 text-muted">
+                                💳 ou em até
+                                <strong class="text-dark">
+                                    {{ $melhorParcela['parcelas'] }}x de
+                                    R$ {{ number_format($melhorParcela['valor_parcela'], 2, ',', '.') }}
+                                </strong>
+                                @if(!$melhorParcela['com_juros'])
+                                    <span class="badge bg-success">sem juros</span>
+                                @endif
+                            </p>
+
+                            <!-- Ver todas as opções de parcelamento -->
+                            <details class="mt-2">
+                                <summary class="text-primary" style="cursor: pointer; user-select: none;">
+                                    Ver todas as opções de parcelamento
+                                </summary>
+                                <ul class="mt-2 list-unstyled small">
+                                    @foreach($opcoesParcelamento as $opcao)
+                                        <li class="py-1 {{ $opcao['com_juros'] ? 'text-muted' : '' }}">
+                                            <span class="fw-bold">{{ $opcao['parcelas'] }}x</span>
+                                            de R$ {{ number_format($opcao['valor_parcela'], 2, ',', '.') }}
+
+                                            @if($opcao['com_juros'])
+                                                <small class="text-muted">
+                                                    (Total: R$ {{ number_format($opcao['valor_total'], 2, ',', '.') }})
+                                                </small>
+                                            @else
+                                                <span class="text-success">✓ sem juros</span>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </details>
+                        </div>
 
                         <!-- Opções de Cor -->
                         <div class="mb-3">
@@ -83,10 +127,6 @@
                             </div>
                         </div>
 
-
-
-
-
                         <div class="mt-4">
                             <h5 class="h6 fw-bold">Descrição</h5>
                             <p class="text-muted small">
@@ -95,14 +135,15 @@
                         </div>
                     </div>
 
-
-
                     <!-- Coluna da Direita: Caixa de Compra -->
                     <div class="col-lg-3">
                         <div class="card border-secondary">
                             <div class="card-body">
-                                <p class="mb-1 text-success fw-bold">Chegada Grátis</p>
-                                <p class="small text-muted">Comprado dentro das próximas 8h</p>
+                                <p class="mb-1 destaque fw-bold">Chegada Grátis</p>
+                                <p class="small text-muted">
+                                    Comprado dentro das próximas:
+                                    <span class="d-inline-block destaque fw-bold" id="regressiva">8h</span>
+                                </p>
                                 <p class="fw-bold">Estoque Disponível: {{ $produto->estoque }}</p>
                                 <div class="mb-3">
                                     <label for="quantity" class="form-label small">Quantidade:</label>
@@ -116,9 +157,11 @@
                                     <button class="btn btn-outline-primary" type="button">Adicionar no carrinho</button>
                                 </div>
                                 <hr>
-                                <p class="mb-1 small"> Vendido por <span
-                                        class="text-primary fw-bold">{{ $donoProduto['name'] }}</span> <i
-                                        class="bi bi-check-circle-fill text-primary"></i></p>
+                                <p class="mb-1 small">
+                                    Vendido por
+                                    <span class="text-primary fw-bold">{{ $donoProduto['name'] }}</span>
+                                    <i class="bi bi-check-circle-fill text-primary"></i>
+                                </p>
                                 <p class="small text-muted">Verificado pelo Bazzary</p>
                             </div>
                         </div>
@@ -127,6 +170,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection
