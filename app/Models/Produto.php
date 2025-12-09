@@ -35,4 +35,11 @@ class Produto extends Model
     {
         return $this->belongsToMany(User::class, 'favoritos');
     }
+
+     public function carrinhos()
+    {
+        return $this->belongsToMany(User::class, 'carrinho_produto')
+                    ->withPivot('quantidade', 'preco_unitario')
+                    ->withTimestamps();
+    }
 }

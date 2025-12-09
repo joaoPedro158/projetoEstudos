@@ -11,7 +11,6 @@ Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
 
 
-
 Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
     ->name('carinhoCompra.index');
 
@@ -53,6 +52,8 @@ Route::get('/dashboard', [ProdutoController::class, 'dashboard'])
     ->middleware('auth')
     ->name('Dashboard');
 
-
+Route::post('/carrinho-ajax', [ProdutoController::class, 'ajax'])
+    ->name('carrinhoAjax')
+    ->middleware('auth');
 
 

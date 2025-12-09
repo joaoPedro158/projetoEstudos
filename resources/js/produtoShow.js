@@ -32,4 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return `${hh}:${mm}:${ss}`;
     }
+
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
+
+fetch("/teste-ajax", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": token
+    },
+    body: JSON.stringify({
+
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log("Resposta do servidor:", data);
+})
+.catch(error => console.error("Erro na requisição:", error));
+
 });

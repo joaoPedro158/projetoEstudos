@@ -2,6 +2,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/Cores.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Produto.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 @push('script')
     @vite('resources/js/produtoShow.js')
@@ -154,7 +155,7 @@
                                 </div>
                                 <div class="gap-2 d-grid">
                                     <button class="btn btn-primary btn-lg" type="button">Compra agora</button>
-                                    <button class="btn btn-outline-primary" type="button">Adicionar no carrinho</button>
+                                    <button class="btn btn-outline-primary carrinho" type="button">Adicionar no carrinho</button>
                                 </div>
                                 <hr>
                                 <p class="mb-1 small">

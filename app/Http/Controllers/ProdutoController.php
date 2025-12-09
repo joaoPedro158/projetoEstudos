@@ -119,4 +119,9 @@ class ProdutoController extends Controller
 
         return redirect()->route('Dashboard')->with('editado', 'Produto atualizado com sucesso!');
     }
+
+    public function carrinhoAjax(Request $request) {
+
+        return;
+    }
 }
