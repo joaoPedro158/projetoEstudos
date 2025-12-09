@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="{{ asset('css/Cores.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Produto.css') }}">
 @endpush
+@push('script')
+ @vite('resources/js/produtoShow.js')
+@endpush
 @section('title', $produto->nome)
 @section('conteudo')
 
@@ -28,9 +31,9 @@
 
                     <!-- Coluna do Meio: Informações do Produto -->
                     <div class="col-lg-4">
-                        <span class="badge bg-warning text-dark mb-2">Mais vendido</span>
+                        <span class="mb-2 badge bg-warning text-dark">Mais vendido</span>
                         <h2 class="h4">{{ $produto->nome }}</h2>
-                        <div class="d-flex align-items-center mb-3">
+                        <div class="mb-3 d-flex align-items-center">
                             <span class="me-2">4.8</span>
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
@@ -45,7 +48,7 @@
                                    @csrf
                                    <input type="hidden" name="produto_id" value="{{ $produto->id }}">
                                        <button type="submit"
-                                           class="bi bi-heart-fill fs-4 borde-none border-0 rounded-circle p-2 lh-1 btn-favorito text-danger"></button>
+                                           class="p-2 border-0 bi bi-heart-fill fs-4 borde-none rounded-circle lh-1 btn-favorito text-danger"></button>
                                </form>
 
                             @else
@@ -53,26 +56,27 @@
                                    @csrf
                                    <input type="hidden" name="produto_id" value="{{ $produto->id }}">
                                        <button type="submit"
-                                           class="bi bi-heart fs-4 borde-none border-0 rounded-circle p-2 lh-1 btn-favorito"></button>
+                                           class="p-2 border-0 bi bi-heart fs-4 borde-none rounded-circle lh-1 btn-favorito"></button>
                                </form>
                             @endif
                          @endauth
                         </div>
 
-                        <p class="text-muted text-decoration-line-through mb-1">R$ 2.838,95</p>
-                        <p class="h2 fw-bold mb-1">R${{ $produto->preco }} <span class="fs-6 text-success fw-normal">37%
+                        <p class="mb-1 d-inline-block text-muted text-decoration-line-through">R$ {{ $produto->preco }}</p>
+                        <span class="inline-block fs-6 text-danger fw-bold ms-2">%{{ $desconto }}</span>
+                        <p class="mb-1 h2 fw-bold">R${{ $valorFinal }} <span class="fs-6 text-success fw-normal">37%
                                 off no Pix ou no débito</span></p>
                         <p class="text-muted">ou R$2.099 em 21x R$99,95 sem juros com seu cartão de crédito</p>
 
                         <!-- Opções de Cor -->
                         <div class="mb-3">
-                            <p class="fw-bold mb-1">Cor: Preto</p>
-                            <div class="d-flex gap-2">
-                                <div class="color-option active d-flex align-items-center gap-2">
+                            <p class="mb-1 fw-bold">Cor: Preto</p>
+                            <div class="gap-2 d-flex">
+                                <div class="gap-2 color-option active d-flex align-items-center">
                                     <span class="color-swatch" style="background-color: #000;"></span>
                                     <span>Preto</span>
                                 </div>
-                                <div class="color-option d-flex align-items-center gap-2">
+                                <div class="gap-2 color-option d-flex align-items-center">
                                     <span class="color-swatch" style="background-color: #add8e6;"></span>
                                     <span>Azul</span>
                                 </div>
@@ -97,7 +101,7 @@
                     <div class="col-lg-3">
                         <div class="card border-secondary">
                             <div class="card-body">
-                                <p class="text-success fw-bold mb-1">Chegada Grátis</p>
+                                <p class="mb-1 text-success fw-bold">Chegada Grátis</p>
                                 <p class="small text-muted">Comprado dentro das próximas 8h</p>
                                 <p class="fw-bold">Estoque Disponível: {{ $produto->estoque }}</p>
                                 <div class="mb-3">
@@ -107,12 +111,12 @@
                                         <option value="2">2 unidades</option>
                                     </select>
                                 </div>
-                                <div class="d-grid gap-2">
+                                <div class="gap-2 d-grid">
                                     <button class="btn btn-primary btn-lg" type="button">Compra agora</button>
                                     <button class="btn btn-outline-primary" type="button">Adicionar no carrinho</button>
                                 </div>
                                 <hr>
-                                <p class="small mb-1"> Vendido por <span
+                                <p class="mb-1 small"> Vendido por <span
                                         class="text-primary fw-bold">{{ $donoProduto['name'] }}</span> <i
                                         class="bi bi-check-circle-fill text-primary"></i></p>
                                 <p class="small text-muted">Verificado pelo Bazzary</p>

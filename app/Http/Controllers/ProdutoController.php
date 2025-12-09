@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\User;
+use App\Services\CalculoService;
 
 class ProdutoController extends Controller
 {
@@ -36,15 +37,18 @@ class ProdutoController extends Controller
         return redirect()->route('adicionarProduto.index')->with('success', 'Produto adicionado com sucesso!');
     }
 
-    public function show($id) {
+    public function show($id, CalculoService $calculo) {
         $usuario = auth()->user();
         $produto = Produto::findOrFail($id);
 
         $donoProduto = User::where('id', $produto->user_id)->first()->toArray();
 
         $favoritosIds = auth()->check() ? auth()->user()->favoritos()->pluck('produtos.id')->toArray() : [];
+
+        $desconto = 15;
+        $valorFinal = $calculo->desconto($produto->preco,$desconto);
         $produtos = Produto::all();
-        return view('produto.produtoShow', compact('produto', 'donoProduto', 'favoritosIds', 'produtos'));
+        return view('produto.produtoShow', compact('produto', 'donoProduto', 'favoritosIds', 'produtos', 'valorFinal', 'desconto'));
     }
 
     public function dashboard(Request $request) {
