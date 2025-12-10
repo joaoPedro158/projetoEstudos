@@ -26,30 +26,42 @@ document.addEventListener('DOMContentLoaded', function() {
         const m = Math.floor((segundos % 3600) / 60);
         const s = segundos % 60;
 
-        const hh = String(h).padStart(2, '0');
-        const mm = String(m).padStart(2, '0');
-        const ss = String(s).padStart(2, '0');
-
-        return `${hh}:${mm}:${ss}`;
+        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
     }
 
+    // AJAX carrinho
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    
+    const btnCarrinho = document.getElementById('btnCarrinho');
 
-fetch("/teste-ajax", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-TOKEN": token
-    },
-    body: JSON.stringify({
+    if (btnCarrinho) {
+        btnCarrinho.addEventListener('click', function() {
+            const produtoId = this.dataset.produtoId;
+            adicionarAoCarrinho(produtoId);
+        });
+    }
 
-    })
-})
-.then(response => response.json())
-.then(data => {
-    console.log("Resposta do servidor:", data);
-})
-.catch(error => console.error("Erro na requisição:", error));
+    function adicionarAoCarrinho(produtoId) {
+        fetch('/carrinho-ajax', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                produto_id: produtoId
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
 
-});
+            Swal.fire({
+                icon: data.status,
+                title: data.message,
+                timer: 2000,
+                showConfirmButton: false
+            });
+        });
+    }
+
+}); 

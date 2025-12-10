@@ -15,13 +15,15 @@
     <link rel="stylesheet" href="{{ asset('css/padrao.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
 </head>
 
 <body>
 
     <!-- BARRA LATERAL DE NAVEGAÇÃO -->
     <nav class="sidebar">
-        <div class="text-center mb-4">
+        <div class="mb-4 text-center">
             <h4 class="text-white">Bazzary Admin</h4>
             <p>Olá {{ auth()->user()->name }}</p>
         </div>
@@ -50,7 +52,7 @@
                     Usuários
                 </a>
             </li>
-            <li class="nav-item mt-auto">
+            <li class="mt-auto nav-item">
                 <a class="nav-link" href="/">
                     <i class="bi bi-box-arrow-left"></i>
                     Sair
@@ -62,7 +64,7 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="main-content">
         <!-- Cabeçalho do Conteúdo -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="mb-4 d-flex justify-content-between align-items-center">
             <h1 class="h2">Gerenciamento de Produtos</h1>
             <div>
                 <a href="{{ route('adicionarProduto.index') }}" class="btn btn-custom-yellow">
@@ -73,14 +75,14 @@
 
         <!-- Card com a Tabela de Produtos -->
         @if (count($produtoDoUsuario) === 0)
-            <div class="alert alert-info  mt-5" role="alert">
+            <div class="mt-5 alert alert-info" role="alert">
                 Nenhum produto cadastrado.
             </div>
         @else
-            <div class="card border-0 shadow-sm">
-                <div class="card-body p-1">
+            <div class="border-0 shadow-sm card">
+                <div class="p-1 card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle">
+                        <table class="table align-middle table-hover">
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">#</th>
@@ -137,57 +139,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-     @if (session('delete'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        });
-
-
-        Toast.fire({
-           iconHtml: '<i class="bi bi-trash-fill text-danger "></i>',
-          title: "{{ session('delete') }}"
-        });
-    });
-        </script>
+@push ('scriptAlert')
+             @if (session('delete'))
+                showToastHtml('<i class="bi bi-trash-fill text-danger"></i>', "{{ session('delete') }}");
+            @endif
+           @if (session('editado'))
+            showToast('success', "{{ session('editado') }}");
     @endif
+@endpush
 
-        @if (session('editado'))
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-
-            const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-            });
-
-
-            Toast.fire({
-            icon: 'success',
-            title: "{{ session('editado') }}"
-            });
-        });
-            </script>
-        @endif
 </body>
 
 </html>

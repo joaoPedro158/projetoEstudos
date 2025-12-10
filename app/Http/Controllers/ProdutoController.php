@@ -19,7 +19,7 @@ class ProdutoController extends Controller
             'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
-            'preco' => 'required|numeric',
+            'preco' => 'required|numeric|min:0|max:999999.99',
             'estoque' => 'nullable|integer|min:1',
         ]);
 
@@ -120,8 +120,5 @@ class ProdutoController extends Controller
         return redirect()->route('Dashboard')->with('editado', 'Produto atualizado com sucesso!');
     }
 
-    public function carrinhoAjax(Request $request) {
-
-        return;
-    }
+    
 }

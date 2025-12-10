@@ -11,9 +11,6 @@ Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
 
 
-Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
-    ->name('carinhoCompra.index');
-
     //rotas farovitos
 Route::get('/favoritos', [FavoritosController::class, 'index'])
     ->name('favoritos.index')
@@ -52,8 +49,12 @@ Route::get('/dashboard', [ProdutoController::class, 'dashboard'])
     ->middleware('auth')
     ->name('Dashboard');
 
-Route::post('/carrinho-ajax', [ProdutoController::class, 'ajax'])
+     //carrinho de compra
+Route::post('/carrinho-ajax', [carinhoCompraController::class, 'store'])
     ->name('carrinhoAjax')
     ->middleware('auth');
+
+Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
+    ->name('carinhoCompra.index');
 
 

@@ -26,20 +26,22 @@ class Produto extends Model
     /**
      * Get the user that owns the product.
      */
+
+     // Dono do produto
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+       // Usuários que favoritaram
    public function usuariosFavoritaram()
     {
         return $this->belongsToMany(User::class, 'favoritos');
     }
 
-     public function carrinhos()
+     // Usuários que têm esse produto no carrinho
+    public function usuariosNoCarrinho()
     {
-        return $this->belongsToMany(User::class, 'carrinho_produto')
-                    ->withPivot('quantidade', 'preco_unitario')
-                    ->withTimestamps();
+        return $this->belongsToMany(User::class, 'carrinho_compra', 'produto_id', 'user_id');
     }
 }

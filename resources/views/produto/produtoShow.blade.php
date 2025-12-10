@@ -14,7 +14,7 @@
 
     <div class="container my-5">
         <div class="card">
-            <div class="card-body">
+            <div class="pb-4 card-body">
                 <div class="row">
                     <!-- Coluna da Esquerda: Imagens do Produto -->
                     <div class="col-lg-5 d-flex">
@@ -146,16 +146,9 @@
                                     <span class="d-inline-block destaque fw-bold" id="regressiva">8h</span>
                                 </p>
                                 <p class="fw-bold">Estoque Disponível: {{ $produto->estoque }}</p>
-                                <div class="mb-3">
-                                    <label for="quantity" class="form-label small">Quantidade:</label>
-                                    <select class="form-select form-select-sm" id="quantity" style="width: auto;">
-                                        <option selected>1 unidade</option>
-                                        <option value="2">2 unidades</option>
-                                    </select>
-                                </div>
                                 <div class="gap-2 d-grid">
                                     <button class="btn btn-primary btn-lg" type="button">Compra agora</button>
-                                    <button class="btn btn-outline-primary carrinho" type="button">Adicionar no carrinho</button>
+                                    <button class="btn btn-outline-primary " id="btnCarrinho" data-produto-id = "{{ $produto->id }}" type="button">Adicionar no carrinho</button>
                                 </div>
                                 <hr>
                                 <p class="mb-1 small">

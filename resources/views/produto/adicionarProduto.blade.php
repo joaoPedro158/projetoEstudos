@@ -9,11 +9,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-7">
 
-                <div class="card shadow-lg border-0">
-                    <div class="card-header text-white text-center py-3" >
+                <div class="border-0 shadow-lg card">
+                    <div class="py-3 text-center text-white card-header" >
                         <h4 class="mb-0">Cadastrar Novo Produto</h4>
                     </div>
-                    <div class="card-body p-4 p-md-5">
+                    <div class="p-4 card-body p-md-5">
                         <form method="POST" action="{{ route('adicionarProduto.store') }}" enctype="multipart/form-data">
                             @csrf
 
@@ -23,7 +23,7 @@
                                 @error('imagem')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                                <div class="form-text px-2">
+                                <div class="px-2 form-text">
                                     Formatos permitidos: jpeg, png, jpg, gif. Tamanho máximo: 2MB.
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                             <div class="mb-3">
                                 <label for="preco" class="form-label">Preço (R$)</label>
                                 <input type="number" class="form-control @error('preco') is-invalid @enderror" id="preco" name="preco"
-                                    placeholder="Ex: 1299.90" step="0.01" value="{{ old('preco') }}" required>
+                                    placeholder="Ex: 1299.90" step="0.01" max="999999.99" value="{{ old('preco') }}" required>
                                 @error('preco')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -78,32 +78,7 @@
         </div>
     </main>
 @endsection
-
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
     @if (session('success'))
-         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        });
-
-
-        Toast.fire({
-          icon: 'success',
-          title: "{{ session('success') }}"
-        });
-    });
-        </script>
+            <script>showToast('success', "{{ session('success') }}");</script>
     @endif
-@endpush
+

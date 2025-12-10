@@ -20,7 +20,7 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- SweetAlert2 CSS -->
+      <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     @stack('styles')
@@ -117,14 +117,22 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
-
-
     <!-- chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
     <script src="/js/script.js"></script>
 
+    @vite(['resources/js/app.js'])
+
+
     @stack('scripts')
+
+    {{-- Os alertas agora funcionam porque alerts.js foi carregado --}}
+    @stack('scriptAlert')
+
+
 
 </body>
 
