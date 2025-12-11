@@ -52,7 +52,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 produto_id: produtoId
             })
         })
-        .then(res => res.json())
+       .then(response => {
+        if(response.status === 401) {
+            window.location.href = '/login';
+            return;
+        }
+        return response.json();
+       })
         .then(data => {
 
             Swal.fire({
@@ -64,4 +70,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-}); 
+});

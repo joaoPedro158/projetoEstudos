@@ -55,6 +55,7 @@ Route::post('/carrinho-ajax', [carinhoCompraController::class, 'store'])
     ->middleware('auth');
 
 Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
-    ->name('carinhoCompra.index');
+    ->name('carinhoCompra.index')
+    ->middleware('auth');
 
 
