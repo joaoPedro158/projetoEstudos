@@ -120,5 +120,5 @@ class ProdutoController extends Controller
         return redirect()->route('Dashboard')->with('editado', 'Produto atualizado com sucesso!');
     }
 
-    
+
 }

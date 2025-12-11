@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+console.log('alerts.js carregado');
 
 window.showToast = function(icon, title) {
     const Toast = Swal.mixin({
