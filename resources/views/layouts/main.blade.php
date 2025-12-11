@@ -110,4 +110,5 @@
         @yield('conteudo')
     </main>
 
+    <x-layout.footer />
 @endsection

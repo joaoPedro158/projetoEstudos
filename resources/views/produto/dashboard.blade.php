@@ -1,26 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@push('styles')
+      <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endpush
+@extends('layouts.base')
+@section('title', 'Dashboard de Produtos')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    {{-- link do css --}}
-    <link rel="stylesheet" href="{{ asset('css/Cores.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/padrao.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
-</head>
-
-<body>
-
+@section('layoutConteudo')
     <!-- BARRA LATERAL DE NAVEGAÇÃO -->
     <nav class="sidebar">
         <div class="mb-4 text-center">
@@ -135,6 +119,8 @@
         @endif
     </main>
 
+@endsection
+
     <!-- SweetAlert2 -->
 
 @push ('scriptAlert')
@@ -146,6 +132,4 @@
     @endif
 @endpush
 
-</body>
 
-</html>
