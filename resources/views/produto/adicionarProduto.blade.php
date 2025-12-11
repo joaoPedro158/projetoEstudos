@@ -81,9 +81,7 @@
 @push('scriptAlert')
     @if (session('success'))
         <script>
-            console.log('Produto cadastrado com sucesso!');
             showToast('success', "{{ session('success') }}");
-            console.log('Produto cadastrado com sucesso!');
         </script>
     @endif
 @endpush

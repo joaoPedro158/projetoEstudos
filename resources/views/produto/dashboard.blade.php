@@ -121,14 +121,12 @@
 
 @endsection
 
-    <!-- SweetAlert2 -->
-
 @push ('scriptAlert')
              @if (session('delete'))
-                showToastHtml('<i class="bi bi-trash-fill text-danger"></i>', "{{ session('delete') }}");
+                <script>showToastHtml('<i class="bi bi-trash-fill text-danger"></i>', "{{ session('delete') }}");</script>
             @endif
            @if (session('editado'))
-            showToast('success', "{{ session('editado') }}");
+            <script>showToast('success', "{{ session('editado') }}");</script>
     @endif
 @endpush
 
