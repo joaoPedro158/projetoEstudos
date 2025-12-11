@@ -1,4 +1,4 @@
-@extends('layouts.MainSimples')
+@extends('layouts.simples')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
@@ -12,11 +12,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
 
-                <div class="card shadow-lg border-0">
-                    <div class="card-header text-white text-center py-3" style="background-color: var(--cor-primaria-escura);">
+                <div class="border-0 shadow-lg card">
+                    <div class="py-3 text-center text-white card-header" style="background-color: var(--cor-primaria-escura);">
                         <h4 class="mb-0">Crie sua Conta</h4>
                     </div>
-                    <div class="card-body p-4 p-md-5">
+                    <div class="p-4 card-body p-md-5">
 
                         <x-validation-errors class="mb-4" />
 

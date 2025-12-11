@@ -1,4 +1,4 @@
-@extends('layouts.MainSimples')
+@extends('layouts.simples')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/adicionarProduto.css') }}">
 
@@ -10,26 +10,26 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-7">
 
-                <div class="card shadow-lg border-0">
-                    <div class="card-header text-white text-center py-3" >
+                <div class="border-0 shadow-lg card">
+                    <div class="py-3 text-center text-white card-header" >
                         <h4 class="mb-0">Atualizar produto</h4>
                     </div>
-                    <div class="card-body p-4 p-md-5">
+                    <div class="p-4 card-body p-md-5">
                         <form method="POST" action="{{ route('produto.update', $produto->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="imagem" class="form-label">Imagem do Produto</label>
                                  @if ($produto->imagem)
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <img src="{{ asset('storage/' . $produto->imagem) }}" alt="Imagem atual do produto" class="img-fluid rounded" style="max-height: 150px;">
+                                    <div class="mb-2 d-flex justify-content-center">
+                                        <img src="{{ asset('storage/' . $produto->imagem) }}" alt="Imagem atual do produto" class="rounded img-fluid" style="max-height: 150px;">
                                     </div>
                                 @endif
                                 <input type="file" class="form-control @error('imagem') is-invalid @enderror" id="imagem" name="imagem" >
                                 @error('imagem')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                                <div class="form-text px-2">
+                                <div class="px-2 form-text">
                                     Formatos permitidos: jpeg, png, jpg, gif. Tamanho máximo: 2MB.
                                 </div>
                             </div>

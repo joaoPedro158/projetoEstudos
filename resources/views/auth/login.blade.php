@@ -1,4 +1,4 @@
-@extends('layouts.MainSimples')
+@extends('layouts.simples')
 
 @push('styles')
    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
@@ -12,15 +12,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
 
-            <div class="card shadow-lg border-0">
-                <div class="card-header text-white text-center py-3" style="background-color: var(--cor-primaria-escura);">
+            <div class="border-0 shadow-lg card">
+                <div class="py-3 text-center text-white card-header" style="background-color: var(--cor-primaria-escura);">
                     <h4 class="mb-0">Acessar sua Conta</h4>
                 </div>
-                <div class="card-body p-4 p-md-5">
+                <div class="p-4 card-body p-md-5">
 
                     {{-- Mensagens de erro de validação --}}
                     @if (session('status'))
-                        <div class="mb-4 font-medium text-sm text-success">
+                        <div class="mb-4 text-sm font-medium text-success">
                             {{ session('status') }}
                         </div>
                     @endif
@@ -42,7 +42,7 @@
                         </div>
 
                         <!-- Lembrar-me e Esqueceu a senha -->
-                        <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="mb-4 d-flex justify-content-between align-items-center">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember">
                                 <label class="form-check-label" for="remember">

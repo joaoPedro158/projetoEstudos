@@ -1,13 +1,13 @@
-@extends('layouts.MainSimples')
+@extends('layouts.simples')
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/favoritos.css') }}">
 @endpush
 @section('title', 'favoritos')
 @section('conteudo')
     <main class="container my-5">
-        <div class="d-flex align-items-center mb-4">
+        <div class="mb-4 d-flex align-items-center">
             <i class="bi bi-heart-fill me-3 icone"></i>
-            <h1 class="h2 mb-0" style="color: var(--cor-texto-primario);">Minha Lista de Desejos</h1>
+            <h1 class="mb-0 h2" style="color: var(--cor-texto-primario);">Minha Lista de Desejos</h1>
         </div>
 
         <!-- Grid de Produtos -->
@@ -19,7 +19,7 @@
                 @endforeach
             @else
                 <div >
-                    <div class="alert alert-info text-center mt-3" role="alert">
+                    <div class="mt-3 text-center alert alert-info" role="alert">
                         Você não adicionou nenhum produto aos favoritos.
                     </div>
                 </div>

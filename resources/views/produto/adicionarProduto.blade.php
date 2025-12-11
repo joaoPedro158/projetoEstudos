@@ -1,4 +1,4 @@
-@extends('layouts.MainSimples')
+@extends('layouts.simples')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/adicionarProduto.css') }}">
 @endpush
