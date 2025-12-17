@@ -23,9 +23,15 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <span style="color: #587DBD; font-weight: bold;">Frete Grátis</span>
-                        <a href="#" id="btnCarrinho" class="fs-4" style="color: #F1C40F;">
+                        <button
+                            type="button"
+                            class="p-0 btn btn-link fs-4 btn-carrinho"
+                            data-produto-id="{{ $produto->id }}"
+                            aria-label="Adicionar ao carrinho"
+                        >
                             <i class="bi bi-cart3"></i>
-                        </a>
+                        </button>
+
                     </div>
                 </div>
             </div>

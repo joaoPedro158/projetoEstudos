@@ -27,7 +27,7 @@
                             <input type="number" class="form-control quantity-input" value="1" min="1" max="50">
                             <button class="btn btn-outline-secondary" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                         </div>
-                        <div class="mt-1 text-muted small">+50 disponível</div>
+                        <div class="mt-1 text-muted small">{{ $produto->estoque }}</div>
                     </div>
 
                     <!-- Coluna 4: Preço -->

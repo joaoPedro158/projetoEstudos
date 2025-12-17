@@ -28,7 +28,7 @@
 
                     <ul class="mb-0 list-unstyled">
 
-                        @foreach ($carinhoCompra as $item)
+                        @foreach ($carrinhoCompra as $item)
                             <x-produto.carinho-card :produto="$item" />
                         @endforeach
                     </ul>

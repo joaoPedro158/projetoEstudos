@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Traits\Dumpable;
 
 class carinhoCompraController extends Controller
 {
     public function index() {
-        $carinhoCompra = Produto::all();
+        $usuario = auth()->user();
 
-        return view('carrinhoCompra', [
-            'carinhoCompra' => $carinhoCompra
-        ]);
+        $carrinhoCompra = $usuario->produtoCarrinho;
+        return view('carrinhoCompra', compact('carrinhoCompra'));
     }
     public function store(Request $request) {
         $userId = auth()->id();

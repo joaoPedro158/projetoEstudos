@@ -38,3 +38,14 @@
     text-overflow: ellipsis;
     white-space: normal;
 }
+
+.btn-carrinho {
+    color: #F1C40F;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-carrinho:hover {
+    color: #d4ac0d;
+    transform: scale(1.15);
+}
+
