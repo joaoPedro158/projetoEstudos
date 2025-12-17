@@ -6,6 +6,7 @@
 @endpush
 @push('script')
     @vite('resources/js/produtoShow.js')
+    @Vite('resources/js/ajaxCarrinho.js')
 @endpush
 
 

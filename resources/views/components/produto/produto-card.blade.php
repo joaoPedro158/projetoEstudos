@@ -23,7 +23,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <span style="color: #587DBD; font-weight: bold;">Frete Grátis</span>
-                        <a href="#" class="fs-4" style="color: #F1C40F;">
+                        <a href="#" id="btnCarrinho" class="fs-4" style="color: #F1C40F;">
                             <i class="bi bi-cart3"></i>
                         </a>
                     </div>
