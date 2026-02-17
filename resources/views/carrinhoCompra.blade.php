@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="{{ asset('css/carrinhoCompra.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cardCarrinho.css') }}">
 @endpush
+@push('script')
+   @Vite('resources/js/carrinhoCompra.js')
+@endpush
 @section('title', 'carinho de compras')
 @section('conteudo')
 
@@ -46,7 +49,7 @@
                             <span class="text-muted">Produtos(3)</span>
                             <div>
                                 <span class="text-muted text-decoration-line-through me-2">R$7.601,95</span>
-                                <span class="fw-bold">R$6.912</span>
+                                <span class="fw-bold" id="totalCarrinho">0,00</span>
                             </div>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">

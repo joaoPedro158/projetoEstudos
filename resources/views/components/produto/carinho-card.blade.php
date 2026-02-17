@@ -7,7 +7,7 @@
                     <!-- Coluna 1: Imagem e Checkbox -->
                     <div class="col-12 col-md-2 d-flex align-items-center">
                         <div class="form-check me-3">
-                         <input class="form-check-input" type="checkbox" value="" id="selectProduct1" checked>
+                         <input class="form-check-input" data-preco="{{  $produto->preco }}" type="checkbox"  value="" id="selectProduct1" >
                             </div>
                         <div class="product-image-container me-1 ">
                             <img src="{{ asset('storage/' . $produto->imagem) }}" class="rounded product-image" alt="Nome do Produto">
@@ -24,10 +24,10 @@
                     <div class="mt-2 col-6 col-md-3 mt-md-0">
                         <div class="input-group">
                             <button class="btn btn-outline-secondary" type="button" onclick="this.nextElementSibling.stepDown()">-</button>
-                            <input type="number" class="form-control quantity-input" value="1" min="1" max="50">
+                            <input type="number" class="form-control quantity-input" value="{{ $produto->pivot->quantidade }}" min="1" max="10">
                             <button class="btn btn-outline-secondary" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                         </div>
-                        <div class="mt-1 text-muted small">{{ $produto->estoque }}</div>
+                        <div class="mt-1 text-muted small">Disponivel: {{ $produto->estoque }}</div>
                     </div>
 
                     <!-- Coluna 4: Preço -->
