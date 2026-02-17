@@ -28,9 +28,8 @@
                         </div>
                     </header>
 
-
+                    <div id="produtosEloquet" data-produtos=' @json($carrinhoCompra)'></div>
                     <ul class="mb-0 list-unstyled">
-
                         @foreach ($carrinhoCompra as $item)
                             <x-produto.carinho-card :produto="$item" />
                         @endforeach
@@ -49,7 +48,7 @@
                             <span class="text-muted">Produtos(3)</span>
                             <div>
                                 <span class="text-muted text-decoration-line-through me-2">R$7.601,95</span>
-                                <span class="fw-bold" id="totalCarrinho">0,00</span>
+                                <span class="fw-bold" id="precoProdutos">0,00</span>
                             </div>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
@@ -60,7 +59,7 @@
                         <hr class="my-3">
                         <div class="d-flex justify-content-between h5 fw-bold">
                             <span>Total</span>
-                            <span>R$6.912</span>
+                            <span id="precoTotal">0,00</span>
                         </div>
                         <div class="mt-4 d-grid">
                             <button class="btn btn-primary btn-lg" type="button">Compra agora</button>

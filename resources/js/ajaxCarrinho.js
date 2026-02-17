@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("linkando");
 
-    // AJAX carrinho
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const btnCarrinho = document.getElementById('btnCarrinho');
 

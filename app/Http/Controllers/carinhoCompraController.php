@@ -13,12 +13,13 @@ class carinhoCompraController extends Controller
         $usuario = auth()->user();
 
         $carrinhoCompra = $usuario->produtoCarrinho;
+        // dump($carrinhoCompra);
         return view('carrinhoCompra', compact('carrinhoCompra'));
     }
     public function store(Request $request) {
         $userId = auth()->id();
 
-          // 3. Verifica se já foi adicionado antes
+
         $jaExiste = DB::table('carrinho_compra')
             ->where('user_id', $userId)
             ->where('produto_id', $request->produto_id)
@@ -42,6 +43,7 @@ class carinhoCompraController extends Controller
         'status' => 'success',
         'message' => 'Produto adicionado ao carrinho com sucesso!'
     ]);
+
 
 
     }
