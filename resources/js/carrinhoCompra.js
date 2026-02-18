@@ -1,34 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const precoBrutoDisplay = document.getElementById('precoBruto');
+    const quantidadeDisplay = document.getElementById('quantidadeProdutos');
+    const descontoDisplay = document.getElementById('precoDescontado');
+    const totalFinalDisplay = document.getElementById('totalFinal');
 
-    const precoPrdutos = document.getElementById('precoProdutos');
-    const quantidadeProdutos = document.getElementById('quantidadeProdutos');
+    function obterDadosMarcados() {
+        const marcados = document.querySelectorAll('.js-check-produto:checked');
+        let bruto = 0;
+        let qtd = 0;
 
-    function calcularTotal() {
-        let total = 0;
-        let quantidade = 0;
-        const checkBoxMarcados = document.querySelectorAll('.js-check-produto:checked');
-
-        checkBoxMarcados.forEach(checkbox => {
-            let preco = parseFloat(checkbox.getAttribute('data-preco')) || 0;
-            quantidade++;
-            total += preco;
-        })
-        console.log(quantidade);
-        let totalformatado = new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        }).format(total);
-        precoPrdutos.textContent = totalformatado;
-        quantidadeProdutos.textContent = quantidade;
-
-    }
-
-        document.querySelectorAll('.js-check-produto').forEach(checkbox => {
-            checkbox.addEventListener('change', calcularTotal);
+        marcados.forEach(checkbox => {
+            bruto += parseFloat(checkbox.getAttribute('data-preco')) || 0;
+            qtd++;
         });
 
-    calcularTotal();
+        return { bruto, qtd };
+    }
 
 
+    function calcularDesconto(valorBruto) {
+        const taxaDesconto = 0.05;
+        return valorBruto * taxaDesconto;
+    }
+
+    function atualizarInterface() {
+        const { bruto, qtd } = obterDadosMarcados();
+        const desconto = calcularDesconto(bruto);
+        const totalFinal = bruto - desconto;
+
+        const formatador = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+
+        precoBrutoDisplay.textContent = formatador.format(bruto);
+        if (quantidadeDisplay) quantidadeDisplay.textContent = qtd;
+        if (descontoDisplay) descontoDisplay.textContent = formatador.format(desconto);
+        if (totalFinalDisplay) totalFinalDisplay.textContent = formatador.format(totalFinal);
+    }
+
+    document.querySelectorAll('.js-check-produto').forEach(cb => {
+        cb.addEventListener('change', atualizarInterface);
+    });
+
+    atualizarInterface();
 });
-

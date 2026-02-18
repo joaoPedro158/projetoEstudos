@@ -47,19 +47,22 @@
                         <div class="mb-2 d-flex justify-content-between">
                             <span class="text-muted">Produtos(<span id="quantidadeProdutos">0</span>)</span>
                             <div>
-                                <span class="text-muted text-decoration-line-through me-2" id="precoProdutos">R$ 0,00</span>
-                                <span class="fw-bold" >R$ 0,00</span>
+                                <span class="fw-bold" id="precoBruto">R$ 0,00</span>
                             </div>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
+                            <span class="text-muted"> desconto</span>
+                            <span class="fw-bold" id="precoDescontado">R$ 0,00</span>
+                        </div>
+                         <div class="mb-3 d-flex justify-content-between">
                             <span class="text-muted">Frete</span>
                             <span class="text-success fw-bold">Grátis</span>
                         </div>
                         <a href="#" class="text-primary text-decoration-none fw-bold small">Inserir Cupom</a>
                         <hr class="my-3">
                         <div class="d-flex justify-content-between h5 fw-bold">
-                            <span>Total</span>
-                            <span id="precoTotal">0,00</span>
+                            <span>Total Final</span>
+                            <span id="totalFinal">0,00</span>
                         </div>
                         <div class="mt-4 d-grid">
                             <button class="btn btn-primary btn-lg" type="button">Compra agora</button>
