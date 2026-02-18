@@ -7,7 +7,7 @@
                     <!-- Coluna 1: Imagem e Checkbox -->
                     <div class="col-12 col-md-2 d-flex align-items-center">
                         <div class="form-check me-3">
-                         <input class="form-check-input" data-preco="{{  $produto->preco }}" type="checkbox"  value="" id="selectProduct1" >
+                         <input class="form-check-input js-check-produto" data-preco="{{  $produto->preco }}" type="checkbox"  value="" id="selectProduct1" >
                             </div>
                         <div class="product-image-container me-1 ">
                             <img src="{{ asset('storage/' . $produto->imagem) }}" class="rounded product-image" alt="Nome do Produto">
@@ -32,11 +32,8 @@
 
                     <!-- Coluna 4: Preço -->
                     <div class="mt-2 col-6 col-md-4 mt-md-0 text-end">
-                        <div class="text-success small">
-                            <i class="bi bi-arrow-down"></i> Baixou o Preço
-                        </div>
-                        <span class="text-muted text-decoration-line-through small d-block">-2% R$ 2.838,95</span>
-                        <span class="h5 fw-bold">{{ $produto->preco}}</span>
+
+                        <span class="h5 fw-bold"> R$ {{ $produto->preco}}</span>
                     </div>
 
                 </div>

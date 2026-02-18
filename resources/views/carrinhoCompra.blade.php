@@ -45,10 +45,10 @@
                         <h5 class="mb-3 card-title">Resumo da Compra</h5>
                         <hr>
                         <div class="mb-2 d-flex justify-content-between">
-                            <span class="text-muted">Produtos(3)</span>
+                            <span class="text-muted">Produtos(<span id="quantidadeProdutos">0</span>)</span>
                             <div>
-                                <span class="text-muted text-decoration-line-through me-2">R$7.601,95</span>
-                                <span class="fw-bold" id="precoProdutos">0,00</span>
+                                <span class="text-muted text-decoration-line-through me-2" id="precoProdutos">R$ 0,00</span>
+                                <span class="fw-bold" >R$ 0,00</span>
                             </div>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
