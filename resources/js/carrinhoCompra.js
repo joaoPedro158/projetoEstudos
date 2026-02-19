@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 produtoContainer.addEventListener('animationend', () => {
                     produtoContainer.remove();
                     atualizarInterface();
+                    verificarCarrinhoVazio();
                 },{ once: true });
             }
         })
@@ -84,5 +85,20 @@ async function excluirServidor(produtoId) {
     } catch (error) {
         console.error('Erro ao excluir produto:', error);
         return false;
+    }
+}
+
+
+function verificarCarrinhoVazio() {
+    const lista = document.getElementById('lista-produto');
+    const itens = lista.querySelectorAll('.produto-container');
+
+    if(itens.length === 0) {
+      const templateVazio = document.getElementById('template-carrinho-vazio');
+      const templateClone = templateVazio.content.cloneNode(true);
+
+      lista.innerHTML = '';
+      lista.appendChild(templateClone);
+
     }
 }

@@ -27,12 +27,29 @@
                             </div>
                         </div>
                     </header>
-                    <ul class="mb-0 list-unstyled">
-                        @foreach ($carrinhoCompra as $item)
+                    <ul class="mb-0 list-unstyled" id="lista-produto">
+                        @forelse ($carrinhoCompra as $item)
                             <x-produto.carinho-card :produto="$item" />
-                        @endforeach
+                        @empty
+                        <div id="container-vazio">
+                            <div class="p-5 text-center">
+                                <i class="mb-3 bi bi-cart-x display-1 text-muted"></i>
+                                <h3>Seu carrinho está vazio</h3>
+                                <p class="text-muted">Parece que você ainda não adicionou nada.</p>
+                                <a href="/" class="btn btn-primary">Voltar às compras</a>
+                            </div>
+                        </div>
+                        @endforelse
                     </ul>
 
+                    <template id="template-carrinho-vazio">
+                        <div class="p-5 text-center animate__animated animate__fadeIn">
+                            <i class="mb-3 bi bi-cart-x display-1 text-muted"></i>
+                            <h3>Seu carrinho está vazio</h3>
+                            <p class="text-muted">Parece que você ainda não adicionou nada.</p>
+                            <a href="/" class="btn btn-primary">Voltar às compras</a>
+                        </div>
+                    </template>
                 </div>
             </div>
 
