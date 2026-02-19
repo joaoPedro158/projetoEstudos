@@ -46,16 +46,19 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         const produtoContainer = event.target.closest('.produto-container');
         const produtoId = event.target.closest('[data-id]').dataset.id;
-        console.log('Produto a excluir:', produtoId);
-        console.log('Elemento do produto:', produtoContainer);
+
 
         excluirServidor(produtoId).then(sucesso => {
             if (sucesso) {
-                produtoContainer.style.opacity = '0';
-                setTimeout(() => {
+                produtoContainer.classList.add('animate__animated',
+                    'animate__fadeOutLeft',
+                    'animate__fast',
+                    'item-excluindo');
+
+                produtoContainer.addEventListener('animationend', () => {
                     produtoContainer.remove();
                     atualizarInterface();
-                }, 300);
+                },{ once: true });
             }
         })
     }

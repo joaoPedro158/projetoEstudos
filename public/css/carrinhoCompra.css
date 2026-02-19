@@ -1,3 +1,14 @@
 body {
     background-color: var(--cor-fundo-claro);
 }
+
+.item-excluindo {
+    transition: all 0.5s ease !important;
+    max-height: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border: none !important;
+    pointer-events: none;
+}
