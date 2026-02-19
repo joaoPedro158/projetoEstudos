@@ -70,17 +70,22 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Produto');
     }
 
+    public function endereco()
+    {
+        return $this->hasMany(Endereco::class);
+    }
+
    public function favoritos()
     {
         return $this->belongsToMany(Produto::class, 'favoritos');
     }
-    
+
     public function produtoCarrinho()
     {
        return $this->belongsToMany(Produto::class, 'carrinho_compra')
            ->using(CarrinhoProduto::class)
            ->withPivot('id', 'quantidade')
-           ->withTimestamps();
+          ->withTimestamps();
 
     }
 
