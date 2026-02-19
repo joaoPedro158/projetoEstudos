@@ -27,8 +27,6 @@
                             </div>
                         </div>
                     </header>
-
-                    <div id="produtosEloquet" data-produtos=' @json($carrinhoCompra)'></div>
                     <ul class="mb-0 list-unstyled">
                         @foreach ($carrinhoCompra as $item)
                             <x-produto.carinho-card :produto="$item" />
@@ -53,10 +51,6 @@
                         <div class="mb-3 d-flex justify-content-between">
                             <span class="text-muted"> desconto</span>
                             <span class="fw-bold" id="precoDescontado">R$ 0,00</span>
-                        </div>
-                         <div class="mb-3 d-flex justify-content-between">
-                            <span class="text-muted">Frete</span>
-                            <span class="text-success fw-bold">Grátis</span>
                         </div>
                         <a href="#" class="text-primary text-decoration-none fw-bold small">Inserir Cupom</a>
                         <hr class="my-3">

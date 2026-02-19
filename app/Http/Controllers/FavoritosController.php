@@ -35,5 +35,4 @@ class FavoritosController extends Controller
 
 
 
-
 }

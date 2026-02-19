@@ -33,15 +33,17 @@ class Produto extends Model
         return $this->belongsTo(User::class);
     }
 
-       // Usuários que favoritaram
    public function usuariosFavoritaram()
     {
         return $this->belongsToMany(User::class, 'favoritos');
     }
 
-     // Usuários que têm esse produto no carrinho
+
     public function usuariosNoCarrinho()
     {
-        return $this->belongsToMany(User::class, 'carrinho_compra', 'produto_id', 'user_id');
+       return $this->belongsToMany(User::class, 'carrinho_compra')
+              ->using(CarrinhoProduto::class)
+              ->withTimestamps()
+              ->withPivot('quantidade');
     }
 }

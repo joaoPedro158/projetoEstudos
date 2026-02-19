@@ -1,4 +1,4 @@
-<li>
+<li class="produto-container">
     <div class="container">
 
             <div class="p-3 mb-3 rounded shadow-sm cart-item">
@@ -15,9 +15,9 @@
                     </div>
 
                     <!-- Coluna 2: Nome do Produto e Excluir -->
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-3" >
                         <h6 class="mb-1">{{ $produto->nome }}</h6>
-                        <a href="#" class="text-primary small text-decoration-none">Excluir</a>
+                        <a href="#" class="text-primary small text-decoration-none btn-excluir" data-id="{{ $produto->id }}">Excluir</a>
                     </div>
 
                     <!-- Coluna 3: Seletor de Quantidade -->

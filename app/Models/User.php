@@ -74,10 +74,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Produto::class, 'favoritos');
     }
+    
     public function produtoCarrinho()
     {
-        return $this->belongsToMany(Produto::class, 'carrinho_compra', 'user_id', 'produto_id')
-            ->withPivot('quantidade');
+       return $this->belongsToMany(Produto::class, 'carrinho_compra')
+           ->using(CarrinhoProduto::class)
+           ->withPivot('id', 'quantidade')
+           ->withTimestamps();
+
     }
 
 

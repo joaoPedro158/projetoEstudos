@@ -41,5 +41,45 @@ document.addEventListener('DOMContentLoaded', function() {
         cb.addEventListener('change', atualizarInterface);
     });
 
+    document.addEventListener('click', function(event) {
+    if(event.target.classList.contains('btn-excluir')) {
+        event.preventDefault();
+        const produtoContainer = event.target.closest('.produto-container');
+        const produtoId = event.target.closest('[data-id]').dataset.id;
+        console.log('Produto a excluir:', produtoId);
+        console.log('Elemento do produto:', produtoContainer);
+
+        excluirServidor(produtoId).then(sucesso => {
+            if (sucesso) {
+                produtoContainer.style.opacity = '0';
+                setTimeout(() => {
+                    produtoContainer.remove();
+                    atualizarInterface();
+                }, 300);
+            }
+        })
+    }
+});
+
     atualizarInterface();
 });
+
+
+
+
+
+async function excluirServidor(produtoId) {
+    try {
+        const response = await fetch(`/carrinho/excluir/${produtoId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').content,
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.ok;
+    } catch (error) {
+        console.error('Erro ao excluir produto:', error);
+        return false;
+    }
+}

@@ -40,11 +40,22 @@ class carinhoCompraController extends Controller
             'updated_at' => now()
         ]);
         return response()->json([
-        'status' => 'success',
-        'message' => 'Produto adicionado ao carrinho com sucesso!'
-    ]);
-
-
+            'status' => 'success',
+            'message' => 'Produto adicionado ao carrinho com sucesso!'
+        ]);
 
     }
+
+    public function destroy($produtoId) {
+        $usuario = auth()->user();
+
+        $usuario->produtoCarrinho()->detach($produtoId);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Produto removido do carrinho com sucesso!'
+        ]);
+
+    }
+
 }

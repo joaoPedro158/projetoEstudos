@@ -58,4 +58,8 @@ Route::get('/carinhoCompra', [carinhoCompraController::class, 'index'])
     ->name('carinhoCompra.index')
     ->middleware('auth');
 
+Route::delete('/carrinho/excluir/{produtoId}', [carinhoCompraController::class, 'destroy'])
+    ->name('carrinho.excluir')
+    ->middleware('auth');
+
 
