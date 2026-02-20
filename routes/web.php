@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FavoritosController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\carinhoCompraController;
-
+use App\Http\Controllers\EnderecoController;
 
 Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
@@ -62,4 +62,14 @@ Route::delete('/carrinho/excluir/{produtoId}', [carinhoCompraController::class, 
     ->name('carrinho.excluir')
     ->middleware('auth');
 
+    //endereco
+Route::get('/endereco', [EnderecoController::class, 'index'])
+    ->name('endereco.index');
 
+Route::get('/cadastrarEndereco', [EnderecoController::class, 'pageCadastraEndereco'])
+    ->name('cadastrarEndereco.index')
+    ->middleware('auth');
+
+Route::post('/cadastrarEndereco/store', [EnderecoController::class, 'store'])
+    ->name('endereco.store')
+    ->middleware('auth');

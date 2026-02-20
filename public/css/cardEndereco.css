@@ -1,0 +1,14 @@
+.produto-container {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 4px solid transparent !important;
+}
+
+/* Efeito visual quando o rádio é selecionado */
+.produto-container:has(.form-check-input:checked) {
+    border-left-color: var(--bs-primary) !important;
+    background-color: #f8f9ff !important;
+}
+
+.produto-container:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+}

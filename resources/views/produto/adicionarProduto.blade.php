@@ -10,8 +10,8 @@
             <div class="col-md-8 col-lg-7">
 
                 <div class="border-0 shadow-lg card">
-                    <div class="py-3 text-center text-white card-header" >
-                        <h4 class="mb-0">Cadastrar Novo Produto</h4>
+                    <div class="py-3 text-center card-header" >
+                        <h4 class="mb-0 text-header">Cadastrar Novo Produto</h4>
                     </div>
                     <div class="p-4 card-body p-md-5">
                         <form method="POST" action="{{ route('adicionarProduto.store') }}" enctype="multipart/form-data">

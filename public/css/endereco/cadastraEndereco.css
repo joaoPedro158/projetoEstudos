@@ -1,0 +1,13 @@
+.card-header {
+    background-color: var(--cor-primaria-escura);
+
+}
+
+.btn-custom-address {
+    background-color: var(--cor-destaque-amarela);
+    color: var(--cor-texto-primario);
+    font-weight: bold;
+}
+.btn-custom-address:hover {
+    background-color: var(--cor-destaque-amarela-hover);
+}

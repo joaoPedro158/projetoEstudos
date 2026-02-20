@@ -51,7 +51,7 @@
                     <!-- Lado Esquerdo: CEP -->
                     <div class="col-md-3">
                         <div class="cep-container">
-                            <a href="#" class="text-white d-flex align-items-center text-decoration-none">
+                            <a href="{{ route('cadastrarEndereco.index') }}" class="text-white d-flex align-items-center text-decoration-none">
                                 <i class="bi bi-geo-alt-fill me-2 fs-5"></i>
                                 <div>
                                     <span class="d-block">Informe seu</span>

@@ -76,7 +76,7 @@
                             <span id="totalFinal">0,00</span>
                         </div>
                         <div class="mt-4 d-grid">
-                            <button class="btn btn-primary btn-lg" type="button">Compra agora</button>
+                           <a class="btn btn-primary btn-lg" href="{{ route('endereco.index') }}">Compra agora</a>
                         </div>
                     </div>
                 </div>
