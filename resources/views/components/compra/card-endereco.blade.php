@@ -1,38 +1,37 @@
-@props(['endereco'])
+@props(['endereco', 'selecionado' => false])
 
-<div class="p-3 mb-3 bg-white rounded shadow-sm border-0 produto-container animate__animated animate__fadeIn">
-    <div class="row align-items-center">
+<div class="mb-3 border-0 shadow-sm card endereco-card {{ $selecionado ? 'border-primary-active' : '' }}">
+    <label class="p-3 mb-0 cursor-pointer card-body d-flex align-items-start" for="endereco-{{ $endereco->id }}">
 
-        <div class="col-1 col-md-1 d-flex justify-content-center">
-            <div class="form-check">
-                <input class="form-check-input js-radio-endereco"
-                       type="radio"
-                       name="endereco_entrega"
-                       id="endereco-{{ $endereco->id }}"
-                       value="{{ $endereco->id }}"
-                       {{ $endereco->principal ? 'checked' : '' }}>
-            </div>
+        <div class="pt-1 form-check">
+            <input class="form-check-input me-3"
+                   type="radio"
+                   name="endereco_id"
+                   id="endereco-{{ $endereco->id }}"
+                   value="{{ $endereco->id }}"
+                   {{ $selecionado ? 'checked' : '' }}>
         </div>
 
-        <div class="col-11 col-md-7">
-            <div class="d-flex align-items-center mb-1">
-                <h6 class="mb-0 fw-bold text-dark">Enviar no meu endereço</h6>
-                <span class="ms-3 badge bg-light text-success border border-success-subtle">Grátis</span>
+        <div class="flex-grow-1">
+            <div class="mb-1 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0 fw-bold text-dark text-capitalize">
+                    {{ $endereco->tipo }}
+                    @if($endereco->principal)
+                        <span class="badge bg-primary-subtle text-primary ms-2 small">Principal</span>
+                    @endif
+                </h6>
+                <span class="text-success small fw-bold">Grátis</span>
             </div>
 
-            <div class="text-muted small">
-                {{ $endereco->logradouro }}, {{ $endereco->numero }} - {{ $endereco->bairro }}, {{ $endereco->cidade }} - CEP {{ $endereco->cep }}
-            </div>
-
-            <div class="mt-1 text-secondary small text-capitalize">
-                {{ $endereco->tipo }}
-            </div>
+            <p class="mb-0 text-muted small">
+                {{ $endereco->logradouro }}, {{ $endereco->numero }}
+                @if($endereco->complemento)
+                    - {{ $endereco->complemento }}
+                @endif
+            </p>
+            <p class="mb-0 text-muted small">
+                {{ $endereco->bairro }} - {{ $endereco->cidade }}, {{ $endereco->estado }}
+            </p>
         </div>
-
-        <div class="col-12 col-md-4 text-end mt-2 mt-md-0">
-            <a href="#" class="btn btn-link btn-sm text-decoration-none text-primary p-0 me-3">Editar</a>
-            <a href="#" class="btn btn-link btn-sm text-decoration-none text-danger p-0 btn-excluir-endereco" data-id="{{ $endereco->id }}">Excluir</a>
-        </div>
-
-    </div>
+    </label>
 </div>

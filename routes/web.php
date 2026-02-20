@@ -64,7 +64,8 @@ Route::delete('/carrinho/excluir/{produtoId}', [carinhoCompraController::class, 
 
     //endereco
 Route::get('/endereco', [EnderecoController::class, 'index'])
-    ->name('endereco.index');
+    ->name('endereco.index')
+    ->middleware('auth');
 
 Route::get('/cadastrarEndereco', [EnderecoController::class, 'pageCadastraEndereco'])
     ->name('cadastrarEndereco.index')

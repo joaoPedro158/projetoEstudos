@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
 {
-    public function index()
-    {
-        return view('endereco.selecionarEndereco');
+    public function index() {
+        $enderecos = Endereco::where('user_id', auth()->id())->get();
+
+        return view('endereco.selecionarEndereco', compact('enderecos'));
     }
+
+
 
     public function pageCadastraEndereco() {
         return view('endereco.cadastraEndereco');
