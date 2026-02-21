@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Services\CheckoutService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Traits\Dumpable;
 
 class carinhoCompraController extends Controller
 {
-    public function index() {
+    public function index(CheckoutService $checkoutService) {
         $usuario = auth()->user();
 
         $carrinhoCompra = $usuario->produtoCarrinho;
-        // dump($carrinhoCompra);
+        // dump($checkoutService->getPedido());
+
         return view('carrinhoCompra', compact('carrinhoCompra'));
     }
     public function store(Request $request) {

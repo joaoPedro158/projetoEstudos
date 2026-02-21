@@ -25,7 +25,7 @@
                 </div>
                 <div class="gap-2 d-flex">
                     <a href="/" class="border btn btn-sm btn-light">
-                         Atualizar
+                         Atualizar Endereço
                     </a>
                     <a href="/" class="btn btn-sm btn-primary">
                         + Novo Endereço

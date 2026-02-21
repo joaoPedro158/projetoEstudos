@@ -7,7 +7,7 @@
                     <!-- Coluna 1: Imagem e Checkbox -->
                     <div class="col-12 col-md-2 d-flex align-items-center">
                         <div class="form-check me-3">
-                         <input class="form-check-input js-check-produto" data-preco="{{  $produto->preco }}" type="checkbox"  value="" id="selectProduct1" >
+                         <input class="form-check-input js-check-produto" data-preco="{{  $produto->preco }}" data-id="{{ $produto->id }}" type="checkbox"  value="" id="selectProduct1" >
                             </div>
                         <div class="product-image-container me-1 ">
                             <img src="{{ asset('storage/' . $produto->imagem) }}" class="rounded product-image" alt="Nome do Produto">

@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FavoritosController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\carinhoCompraController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\EnderecoController;
 
 Route::get('/',[HomeController::class, 'index'])
@@ -73,4 +74,9 @@ Route::get('/cadastrarEndereco', [EnderecoController::class, 'pageCadastraEndere
 
 Route::post('/cadastrarEndereco/store', [EnderecoController::class, 'store'])
     ->name('endereco.store')
+    ->middleware('auth');
+
+    //checkout
+Route::post('/checkout/adicionarItem', [CheckoutController::class, 'adicionarItemCheckout'])
+    ->name('checkout.adicionarItem')
     ->middleware('auth');
