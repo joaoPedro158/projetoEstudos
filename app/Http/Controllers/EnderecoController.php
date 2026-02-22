@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EnderecoRequest;
 use App\Models\Endereco;
+use App\Services\CheckoutService;
 use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
 {
-    public function index() {
+    public function index(CheckoutService $checkoutService) {
         $enderecos = Endereco::where('user_id', auth()->id())->get();
-
-        return view('endereco.selecionarEndereco', compact('enderecos'));
+        dump($checkoutService->getPedido());
+        return view('endereco.selecionarEndereco', compact('enderecos', 'checkoutService'));
     }
 
 

@@ -5,6 +5,7 @@
 @endpush
 
 @push('script')
+    @Vite('resources/js/selecionarEndereco.js')
 @endpush
 @section('title', 'endereço')
 @section('conteudo')
@@ -68,7 +69,7 @@
                             <span id="totalFinal">0,00</span>
                         </div>
                         <div class="mt-4 d-grid">
-                           <a class="btn btn-primary btn-lg" href="{{ route('endereco.index') }}">Compra agora</a>
+                           <a class="btn btn-primary btn-lg" id="btnIrPagamento" >Compra agora</a>
                         </div>
                     </div>
                 </div>

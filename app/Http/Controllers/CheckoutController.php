@@ -15,4 +15,8 @@ class CheckoutController extends Controller
             $checkoutService->adicionarItem($id);
         }
     }
+
+    public function adicioanrEnderecoCheckout($enderecoId, CheckoutService $checkoutService) {
+        $checkoutService->adicionarEndereco($enderecoId);
+    }
 }

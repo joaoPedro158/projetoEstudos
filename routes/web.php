@@ -80,3 +80,7 @@ Route::post('/cadastrarEndereco/store', [EnderecoController::class, 'store'])
 Route::post('/checkout/adicionarItem', [CheckoutController::class, 'adicionarItemCheckout'])
     ->name('checkout.adicionarItem')
     ->middleware('auth');
+
+Route::post('/checkout/adicionarEndereco/{enderecoId}', [CheckoutController::class, 'adicioanrEnderecoCheckout'])
+    ->name('checkout.adicionarEndereco')
+    ->middleware('auth');
