@@ -1,19 +1,12 @@
 @extends('layouts.simples')
-
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/endereco/cadastraEndereco.css') }}">
 @endpush
 @push('script')
     @Vite('resources/js/cadastraEndereco.js')
 @endpush
-@push('scriptAlert')
-    @if (session('success'))
-        <script>
-            showToast('success', "{{ session('success') }}");
-        </script>
-    @endif
-@endpush
-@section('title', 'endereço')
+
+@section('title', 'atualizar endereço')
 @section('conteudo')
 
 <main class="container my-5">
@@ -22,16 +15,17 @@
 
                 <div class="border-0 shadow-lg card">
                     <div class="py-3 text-center text-white card-header">
-                        <h4 class="mb-0">Cadastrar Novo Endereço</h4>
+                        <h4 class="mb-0">Atualizar Endereço</h4>
                     </div>
 
                     <div class="p-4 card-body p-md-5">
-                        <form method="POST" action="{{ route('endereco.store') }}">
+                        <form method="POST" action="{{ route('endereco.update', ['enderecoId' => $endereco->id]) }}">
                             @csrf
+                            @method('PUT')
 
                             @include('partials.form-endereco')
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-custom-address btn-lg">Salvar Endereço</button>
+                                <button type="submit" class="btn btn-custom-address btn-lg">Atualizar Endereço</button>
                             </div>
                         </form>
                     </div>

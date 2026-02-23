@@ -76,6 +76,14 @@ Route::post('/cadastrarEndereco/store', [EnderecoController::class, 'store'])
     ->name('endereco.store')
     ->middleware('auth');
 
+Route::get('/endereco/edit/{enderecoId}', [EnderecoController::class,'edit'])
+    ->name('endereco.edit')
+    ->middleware('auth');
+
+Route::put('/endereco/update/{enderecoId}', [EnderecoController::class, 'update'])
+    ->name('endereco.update')
+    ->middleware('auth');
+
     //checkout
 Route::post('/checkout/adicionarItem', [CheckoutController::class, 'adicionarItemCheckout'])
     ->name('checkout.adicionarItem')

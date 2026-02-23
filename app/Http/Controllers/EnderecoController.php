@@ -30,4 +30,19 @@ class EnderecoController extends Controller
 
         return redirect()->route('home.index')->with('success', 'Endereço cadastrado com sucesso!');
     }
+    public function edit($enderecoId) {
+        $endereco = Endereco::where('user_id', auth()->id())->findOrFail($enderecoId);
+
+        return view('endereco.atualizarEndereco', compact('endereco'));
+    }
+
+    public function update(EnderecoRequest $enderecoRequest, $enderecoId) {
+        $dadosValidados = $enderecoRequest->validated();
+
+        $endereco = Endereco::where('user_id', auth()->id())->findOrFail($enderecoId);
+
+        $endereco->update($dadosValidados);
+
+        return redirect()->route('home.index')->with('success', 'Endereço atualizado com sucesso!');
+    }
 }

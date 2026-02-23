@@ -25,10 +25,10 @@
                     </a>
                 </div>
                 <div class="gap-2 d-flex">
-                    <a href="/" class="border btn btn-sm btn-light">
+                    <a href= "javascript:void(0)" id="btnEditEndereco" class="border btn btn-sm btn-light">
                          Atualizar Endereço
                     </a>
-                    <a href="/" class="btn btn-sm btn-primary">
+                    <a href="{{ route('cadastrarEndereco.index') }}" class="btn btn-sm btn-primary">
                         + Novo Endereço
                     </a>
                 </div>

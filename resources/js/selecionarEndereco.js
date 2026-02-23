@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const btnIrPagamento = document.getElementById('btnIrPagamento');
     const tokenCSRF = document.querySelector('meta[name="csrf-token"]').content;
+    const btnEditEndereco = document.getElementById('btnEditEndereco');
 
 
     function obterEndereco() {
@@ -11,6 +12,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return null;
     }
+
+    btnEditEndereco.addEventListener('click', function() {
+        let enderecoId = obterEndereco();
+        if(!enderecoId) {
+            alert('selecione um endereço para atualizar');
+            return;
+        }
+        console.log(enderecoId);
+        window.location.href = `/endereco/edit/${enderecoId}`;
+    })
     btnIrPagamento.addEventListener('click', function(event) {
         let enderecoId = obterEndereco();
         event.preventDefault();
