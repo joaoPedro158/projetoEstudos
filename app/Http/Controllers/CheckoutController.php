@@ -19,4 +19,9 @@ class CheckoutController extends Controller
     public function adicioanrEnderecoCheckout($enderecoId, CheckoutService $checkoutService) {
         $checkoutService->adicionarEndereco($enderecoId);
     }
+
+    public function finalizarCheckout(CheckoutService $checkoutService, Request $request, ) {
+        //logica para finalizar pagamento
+
+    }
 }
