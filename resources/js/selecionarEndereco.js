@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const tokenCSRF = document.querySelector('meta[name="csrf-token"]').content;
     const btnEditEndereco = document.getElementById('btnEditEndereco');
 
+    const precoBrutoDisplay = document.getElementById('precoBruto');
+    const quantidadeDisplay = document.getElementById('quantidadeProdutos');
+    const totalFinalDisplay = document.getElementById('totalFinal');
+
 
     function obterEndereco() {
         const radioSelecionado = document.querySelector('input[name="endereco_id"]:checked');

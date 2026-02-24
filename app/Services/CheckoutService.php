@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\DTOs\CheckoutResumoDto;
+
 class CheckoutService {
 
     private string $chave = 'checkout';
@@ -43,6 +45,12 @@ class CheckoutService {
 
     public function getPedido() {
         return session()->get($this->chave);
+    }
+
+    public function pedidoDTO() {
+        $checkout = $this->getPedido();
+
+        return CheckoutResumoDto::fromArray($checkout);
     }
 
 

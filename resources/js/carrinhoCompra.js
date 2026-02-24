@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function obterDadosMarcados() {
         const marcados = document.querySelectorAll('.js-check-produto:checked');
-        console.log('Checkboxes marcados:', marcados.length);
         let bruto = 0;
         let qtd = 0;
 
@@ -16,9 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         marcados.forEach( checkbox => {
             const card = checkbox.closest('.produto-container');
-            console.log('Card encontrado:', card);
             const quantidadeinput = card.querySelector('.quantity-input');
-             console.log('Input encontrado:', quantidadeinput);
             const quantidade = parseFloat(quantidadeinput.value) || 1;
             const preco = parseFloat(checkbox.getAttribute('data-preco')) || 0;
 
@@ -27,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             produtoIds.push({
                 Id: checkbox.getAttribute('data-id'),
-                quantidade: quantidade
+                quantidade: quantidade,
+                precoUnitario: preco
             })
 
         });
@@ -59,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(evente){
         if (evente.target.classList.contains('btn-outline-secondary')) {
             atualizarInterface();
-            console.log('Botão de quantidade clicado, interface atualizada.');
         }
     })
 
