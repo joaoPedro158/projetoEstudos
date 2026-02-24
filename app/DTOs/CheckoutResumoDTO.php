@@ -4,7 +4,7 @@ namespace App\DTOs;
 
 readonly class CheckoutResumoDto {
     public function __construct(
-        public array $itens,
+
         public float $totalGeral,
         public int $quantidadeTotal,
     ) {}
@@ -13,7 +13,7 @@ readonly class CheckoutResumoDto {
         $colecao = collect($dados['itens']);
 
         return new self(
-            itens: $dados['itens'],
+
             totalGeral: $colecao->sum(fn($i) => $i["precoUnitario"] * $i["quantidade"]),
             quantidadeTotal: $colecao->sum('quantidade')
 

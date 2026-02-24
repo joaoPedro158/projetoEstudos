@@ -6,6 +6,7 @@ use App\Http\Requests\EnderecoRequest;
 use App\Models\Endereco;
 use App\Services\CheckoutService;
 use Illuminate\Http\Request;
+use Nette\Utils\Json;
 
 class EnderecoController extends Controller
 {
@@ -13,6 +14,7 @@ class EnderecoController extends Controller
         $enderecos = Endereco::where('user_id', auth()->id())->get();
         $checkoutPedido = $checkoutService->pedidoDTO();
         dump($checkoutPedido);
+        
         return view('endereco.selecionarEndereco', compact('enderecos', 'checkoutPedido'));
     }
 

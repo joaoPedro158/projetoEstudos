@@ -6,6 +6,7 @@
 
 @push('script')
     @Vite('resources/js/selecionarEndereco.js')
+
 @endpush
 @section('title', 'endereço')
 @section('conteudo')
@@ -51,4 +52,8 @@
 
         </div>
     </div>
+    <script>
+        const dadosCheckout = @json($checkoutPedido);
+        console.log(dadosCheckout);
+    </script>
 @endsection

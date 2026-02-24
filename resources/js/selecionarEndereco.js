@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const btnIrPagamento = document.getElementById('btnIrPagamento');
+    const btnIrPagamento = document.getElementById('btnCompraAgora');
     const tokenCSRF = document.querySelector('meta[name="csrf-token"]').content;
     const btnEditEndereco = document.getElementById('btnEditEndereco');
-
-    const precoBrutoDisplay = document.getElementById('precoBruto');
     const quantidadeDisplay = document.getElementById('quantidadeProdutos');
-    const totalFinalDisplay = document.getElementById('totalFinal');
+    const valorTotalDisplay = document.getElementById('totalFinal');
+    const precoBrutoDisplay = document.getElementById('precoBruto');
+
 
 
     function obterEndereco() {
@@ -15,6 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return radioSelecionado.value;
         }
         return null;
+    }
+    function atualizarInterface() {
+        const formatador = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        quantidadeDisplay.textContent = dadosCheckout.quantidadeTotal;
+        valorTotalDisplay.textContent = formatador.format(dadosCheckout.totalGeral);
+        precoBrutoDisplay.textContent = formatador.format(dadosCheckout.totalGeral);
+
     }
 
     btnEditEndereco.addEventListener('click', function() {
@@ -55,5 +63,5 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
     }
-
+    atualizarInterface();
 });
