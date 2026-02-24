@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('selecione um endereço para atualizar');
             return;
         }
-        console.log(enderecoId);
         window.location.href = `/endereco/edit/${enderecoId}`;
     })
     btnIrPagamento.addEventListener('click', function(event) {

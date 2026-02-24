@@ -13,8 +13,7 @@ class EnderecoController extends Controller
     public function index(CheckoutService $checkoutService) {
         $enderecos = Endereco::where('user_id', auth()->id())->get();
         $checkoutPedido = $checkoutService->pedidoDTO();
-        dump($checkoutPedido);
-        
+
         return view('endereco.selecionarEndereco', compact('enderecos', 'checkoutPedido'));
     }
 
