@@ -65,10 +65,10 @@
                                 <span class="fw-bold" id="precoBruto">R$ 0,00</span>
                             </div>
                         </div>
-                        <div class="mb-3 d-flex justify-content-between">
+                        {{-- <div class="mb-3 d-flex justify-content-between">
                             <span class="text-muted"> desconto</span>
                             <span class="fw-bold" id="precoDescontado">R$ 0,00</span>
-                        </div>
+                        </div> --}}
                         <a href="#" class="text-primary text-decoration-none fw-bold small">Inserir Cupom</a>
                         <hr class="my-3">
                         <div class="d-flex justify-content-between h5 fw-bold">

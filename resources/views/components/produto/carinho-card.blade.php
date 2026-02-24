@@ -24,7 +24,7 @@
                     <div class="mt-2 col-6 col-md-3 mt-md-0">
                         <div class="input-group">
                             <button class="btn btn-outline-secondary" type="button" onclick="this.nextElementSibling.stepDown()">-</button>
-                            <input type="number" class="form-control quantity-input" value="{{ $produto->pivot->quantidade }}" min="1" max="10">
+                            <input type="number" class="form-control quantity-input" value="{{ $produto->pivot->quantidade }}" min="1" max="{{ $produto->estoque }}">
                             <button class="btn btn-outline-secondary" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                         </div>
                         <div class="mt-1 text-muted small">Disponivel: {{ $produto->estoque }}</div>

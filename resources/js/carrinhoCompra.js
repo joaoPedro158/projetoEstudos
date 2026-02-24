@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const precoBrutoDisplay = document.getElementById('precoBruto');
     const quantidadeDisplay = document.getElementById('quantidadeProdutos');
-    const descontoDisplay = document.getElementById('precoDescontado');
     const totalFinalDisplay = document.getElementById('totalFinal');
     const tokenCSRF = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -9,41 +8,60 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function obterDadosMarcados() {
         const marcados = document.querySelectorAll('.js-check-produto:checked');
+        console.log('Checkboxes marcados:', marcados.length);
         let bruto = 0;
         let qtd = 0;
+
         let produtoIds = [];
 
-        marcados.forEach(checkbox => {
-            bruto += parseFloat(checkbox.getAttribute('data-preco')) || 0;
-            qtd++;
-            produtoIds.push(checkbox.getAttribute('data-id'));
+        marcados.forEach( checkbox => {
+            const card = checkbox.closest('.produto-container');
+            console.log('Card encontrado:', card);
+            const quantidadeinput = card.querySelector('.quantity-input');
+             console.log('Input encontrado:', quantidadeinput);
+            const quantidade = parseFloat(quantidadeinput.value) || 1;
+            const preco = parseFloat(checkbox.getAttribute('data-preco')) || 0;
+
+            bruto += preco * quantidade;
+            qtd += quantidade;
+
+            produtoIds.push({
+                Id: checkbox.getAttribute('data-id'),
+                quantidade: quantidade
+            })
+
         });
         return { bruto, qtd, produtoIds };
     }
 
 
-    function calcularDesconto(valorBruto) {
-        const taxaDesconto = 0.05;
-        return valorBruto * taxaDesconto;
-    }
 
     function atualizarInterface() {
-        const { bruto, qtd} = obterDadosMarcados();
-        const desconto = calcularDesconto(bruto);
-        const totalFinal = bruto - desconto;
+    const { bruto, qtd } = obterDadosMarcados();
 
-        const formatador = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+    const formatador = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
-
-        precoBrutoDisplay.textContent = formatador.format(bruto);
-        if (quantidadeDisplay) quantidadeDisplay.textContent = qtd;
-        if (descontoDisplay) descontoDisplay.textContent = formatador.format(desconto);
-        if (totalFinalDisplay) totalFinalDisplay.textContent = formatador.format(totalFinal);
-    }
+    precoBrutoDisplay.textContent = formatador.format(bruto);
+    if (quantidadeDisplay) quantidadeDisplay.textContent = qtd;
+    if (totalFinalDisplay) totalFinalDisplay.textContent = formatador.format(bruto);
+}
 
     document.querySelectorAll('.js-check-produto').forEach(cb => {
         cb.addEventListener('change', atualizarInterface);
     });
+
+    document.addEventListener('input', function(event) {
+        if (event.target.classList.contains('quantity-input')) {
+            atualizarInterface();
+        }
+    });
+
+    document.addEventListener('click', function(evente){
+        if (evente.target.classList.contains('btn-outline-secondary')) {
+            atualizarInterface();
+            console.log('Botão de quantidade clicado, interface atualizada.');
+        }
+    })
 
     document.addEventListener('click', function(event) {
     if(event.target.classList.contains('btn-excluir')) {
