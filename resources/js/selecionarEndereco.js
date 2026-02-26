@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             if(response.ok) {
-                window.location.href = '/pagamento';
+                window.location.href = 'checkout/pagamento';
             }
         } catch (error) {
             console.error('Erro ao enviar endereço para o servidor:', error);

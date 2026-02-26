@@ -7,6 +7,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\carinhoCompraController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\PagamentoController;
 
 Route::get('/',[HomeController::class, 'index'])
     ->name('home.index');
@@ -91,4 +92,21 @@ Route::post('/checkout/adicionarItem', [CheckoutController::class, 'adicionarIte
 
 Route::post('/checkout/adicionarEndereco/{enderecoId}', [CheckoutController::class, 'adicioanrEnderecoCheckout'])
     ->name('checkout.adicionarEndereco')
+    ->middleware('auth');
+
+Route::get("checkout/pagamento" , [CheckoutController::class, 'finalizarCheckout'])
+    ->name('checkout.finalizarcompra')
+    ->middleware('auth');
+
+        //pagamento
+Route::get("/pagamento/sucesso", [PagamentoController::class, 'sucesso'])
+    ->name('pagamento.sucesso')
+    ->middleware('auth');
+
+Route::get("/pagamento/falha", [PagamentoController::class, 'falha'])
+    ->name('pagamento.falha')
+    ->middleware('auth');
+
+Route::get("/pagamento/pendente", [PagamentoController::class, 'pendente'])
+    ->name('pagamento.pendente')
     ->middleware('auth');

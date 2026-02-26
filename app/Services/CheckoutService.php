@@ -11,8 +11,7 @@ class CheckoutService {
     public function inicio() {
         session()->put($this->chave, [
             'itens' => [],
-            'endereco' => null,
-            'pagamento' => null
+            'endereco' => null
         ]);
     }
 
@@ -28,17 +27,12 @@ class CheckoutService {
         session()->put($this->chave . '.endereco', $enderecoId);
     }
 
-    public function adicionarPagamento($pagamentoId) {
-        session()->put($this->chave . '.pagamento', $pagamentoId);
-    }
-
     public function estaPronto() : bool {
 
         $checkout = $this->getPedido();
 
         $pedidoValido = !empty($checkout['itens']) &&
-                        !empty($checkout['endereco']) &&
-                        !empty($checkout['pagamento']);
+                        !empty($checkout['endereco']);
 
         return $pedidoValido;
     }
@@ -53,5 +47,6 @@ class CheckoutService {
         return CheckoutResumoDto::fromArray($checkout);
     }
 
+    
 
 }

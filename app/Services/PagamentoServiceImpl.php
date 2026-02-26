@@ -2,18 +2,71 @@
 
 namespace App\Services;
 
+
+use App\DTOs\CheckoutPedidoDTO;
 use App\Interface\PagamentoInterface;
-use MercadoPago\SDK;
-use MercadoPago\Preference;
+use Exception;
+use MercadoPago\MercadoPagoConfig;
+use MercadoPago\Client\Preference\PreferenceClient;
+
 
 class PagamentoServiceImpl implements PagamentoInterface{
 
     public function __construct() {
-        SDK::setAccessToken(env('MERCADOPAGO_ACCESS_TOKEN'));
+
+        MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
     }
 
-    public function gerarLinkPagamento(array $produtos, string $pedidoId): string {
+    public function criarPreferencia(CheckoutPedidoDTO $dto) {
+        try {
+            $cliente = new PreferenceClient();
 
-        // logica para criar a preferência de pagamento no MercadoPago
+            $itensMP = [];
+          foreach($dto->itens as $item) {
+                $itensMP[] = [
+                    "id" => (string) $item['id'],
+                    "title" => $item['titulo'],
+                    "quantity" => (int) $item['quantidade'],
+                    "unit_price" => (float) $item['preco'],
+                    "currency_id" => "BRL",
+                ];
+            }
+
+            $request = [
+                "items" => $itensMP,
+                "payer" => [
+                    "name" => auth()->user()->name,
+                    "email" => auth()->user()->email,
+                ],
+                "external_reference" => (string) $dto->enderecoId,
+                "back_urls" => [
+                 "success" => route('pagamento.sucesso'),
+                "failure" => route('pagamento.falha'),
+                "pending" => route('pagamento.pendente'),
+                ],
+
+                // "auto_return" => "approved",
+            ];
+
+            $preferencia = $cliente->create($request);
+
+            return $preferencia->init_point;
+
+
+        } catch (Exception $e) {
+           if (method_exists($e, 'getApiResponse')) {
+        $response = $e->getApiResponse();
+        dd([
+            'status_code' => $response->getStatusCode(),
+            'content' => $response->getContent(), // AQUI ESTÁ O VILÃO!
+        ]);
+    }
+
+    // Caso não tenha o método, vamos dar dump no objeto todo para investigar
+    dd($e);
+        }
+
+
+
     }
 }

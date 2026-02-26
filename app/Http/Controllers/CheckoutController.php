@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\CheckoutPedidoDto;
+use App\Interface\PagamentoInterface;
 use App\Services\CheckoutService;
 use Illuminate\Http\Request;
 
@@ -20,8 +22,10 @@ class CheckoutController extends Controller
         $checkoutService->adicionarEndereco($enderecoId);
     }
 
-    public function finalizarCheckout(CheckoutService $checkoutService, Request $request, ) {
-        //logica para finalizar pagamento
-
+    public function finalizarCheckout(CheckoutService $checkoutService, PagamentoInterface $pagamentoService) {
+        $dadosSessão = $checkoutService->getPedido();
+        $dto = CheckoutPedidoDto::fromSession($dadosSessão);
+        $link = $pagamentoService->criarPreferencia($dto);
+        return redirect()->away($link);
     }
 }

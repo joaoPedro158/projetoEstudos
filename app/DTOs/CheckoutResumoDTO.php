@@ -2,7 +2,7 @@
 
 namespace App\DTOs;
 
-readonly class CheckoutResumoDto {
+readonly class CheckoutResumoDTO {
     public function __construct(
 
         public float $totalGeral,
