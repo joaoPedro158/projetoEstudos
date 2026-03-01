@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\DTOs\CheckoutResumoDto;
+use App\Models\Endereco;
+use Exception;
 
 class CheckoutService {
 
@@ -27,14 +29,38 @@ class CheckoutService {
         session()->put($this->chave . '.endereco', $enderecoId);
     }
 
-    public function estaPronto() : bool {
+    public function validarCheckout() {
 
         $checkout = $this->getPedido();
+        dump($checkout);
+        if (empty($checkout['itens'])) {
+            throw new Exception("Seu carrinho está vazio.");
+        }
+       if (empty($checkout['endereco'])) {
+            throw new Exception("Endereço de entrega não selecionado.");
+        }
 
-        $pedidoValido = !empty($checkout['itens']) &&
-                        !empty($checkout['endereco']);
+        $enderecoId = $checkout['endereco']['id'];
+        $exists = Endereco::where('id', $enderecoId)
+                    ->where('user_id', auth()->id())
+                    ->exists();
 
-        return $pedidoValido;
+        if (!$exists) {
+            throw new \Exception("O endereço selecionado é inválido ou não pertence à sua conta.");
+        }
+
+
+        foreach ($checkout['itens'] as $item) {
+            $produto = \App\Models\Produto::find($item['id']);
+
+            if (!$produto) {
+                throw new \Exception("O produto '{$item['nome']}' não está mais disponível.");
+            }
+
+            if ($produto->estoque < $item['quantidade']) {
+                throw new \Exception("Estoque insuficiente para '{$item['nome']}'. Temos apenas {$produto->estoque} unidades.");
+            }
+        }
     }
 
     public function getPedido() {
@@ -47,6 +73,6 @@ class CheckoutService {
         return CheckoutResumoDto::fromArray($checkout);
     }
 
-    
+
 
 }

@@ -32,7 +32,7 @@ class ProdutoFactory extends Factory
             'nome' => $produtoNome,
             'imagem' => $imgCaminho,
             'estoque' => $this->faker->numberBetween(1,50),
-            'preco' => $this->faker->randomFloat(2, 5.00, 999.99),
+            'preco' => $this->faker->randomFloat(2, 5.00, 200.00),
             'descricao' => $this->faker->paragraphs(2, true),
             'descricao' => $this->faker->paragraphs(2, true),
             'user_id' => \App\Models\User::factory(),

@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\PagamentoRespostaDTO;
+use App\Services\RegistraCompraService;
 use Illuminate\Http\Request;
 
 class PagamentoController extends Controller
 {
-    public function sucesso(Request $request)  {
-        $dadosMP = [
-            'pagamento_id' => $request->query('payment_id'),
-            'status' => $request->query('status'),
-            'referencia' => $request->query('external_reference')
-        ];
+    public function sucesso(Request $request,
+        RegistraCompraService $registraCompraService ) {
 
-        return view('pagamento.sucesso', compact('dadosMP'));
+        $dto = PagamentoRespostaDTO::fromRequest($request);
+
+        $registraCompraService->ConfirmarCompra($dto);
+
+        dump($dto);
+        return view('pagamento.sucesso');
     }
 
     public function falha(Request $request) {

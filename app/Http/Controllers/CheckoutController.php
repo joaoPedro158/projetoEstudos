@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DTOs\CheckoutPedidoDto;
 use App\Interface\PagamentoInterface;
 use App\Services\CheckoutService;
+use Exception;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -22,10 +23,17 @@ class CheckoutController extends Controller
         $checkoutService->adicionarEndereco($enderecoId);
     }
 
-    public function finalizarCheckout(CheckoutService $checkoutService, PagamentoInterface $pagamentoService) {
-        $dadosSessão = $checkoutService->getPedido();
-        $dto = CheckoutPedidoDto::fromSession($dadosSessão);
-        $link = $pagamentoService->criarPreferencia($dto);
-        return redirect()->away($link);
+    public function finalizarCheckout(CheckoutService $checkoutService, PagamentoInterface $pagamentoService,) {
+        try{
+            $checkoutService->validarCheckout();
+            $dadosSessão = $checkoutService->getPedido();
+            $dto = CheckoutPedidoDto::fromSession($dadosSessão);
+            $link = $pagamentoService->criarPreferencia($dto);
+            return redirect()->away($link);
+        }catch(Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+
+
     }
 }

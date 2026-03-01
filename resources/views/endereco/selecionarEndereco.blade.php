@@ -47,13 +47,16 @@
         </div>
     </div>
 
-            {{-- @dump($checkoutPedido) --}}
            <x-compra.card-resumo-compra />
 
         </div>
+     @if(session('error'))
+        <div class="p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-lg">
+            {{ session('error') }}
+        </div>
+    @endif
     </div>
     <script>
         const dadosCheckout = @json($checkoutPedido);
-        console.log(dadosCheckout);
     </script>
 @endsection
