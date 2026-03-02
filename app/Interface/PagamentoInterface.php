@@ -8,5 +8,5 @@ use App\DTOs\ChekoutPedidoDTO;
 interface PagamentoInterface
 {
 
-    public function criarPreferencia(CheckoutPedidoDTO $dto);
+    public function criarPreferencia(CheckoutPedidoDTO $dto, int $idCompra);
 }

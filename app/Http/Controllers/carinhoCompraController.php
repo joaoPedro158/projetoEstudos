@@ -10,11 +10,10 @@ use Illuminate\Support\Traits\Dumpable;
 
 class carinhoCompraController extends Controller
 {
-    public function index(CheckoutService $checkoutService) {
+    public function index() {
         $usuario = auth()->user();
 
         $carrinhoCompra = $usuario->produtoCarrinho;
-        // dump($checkoutService->getPedido());
 
         return view('carrinhoCompra', compact('carrinhoCompra'));
     }

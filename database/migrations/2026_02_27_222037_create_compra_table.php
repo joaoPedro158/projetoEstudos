@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('endereco_id')->constrained('endereco')->onDelete('cascade');
             $table->string('status');
-            $table->bigInteger('id_pagamento');
-            $table->string('metodo_pagamento');
-            $table->bigInteger('id_ordem_pagamento');
-            $table->string('referencia_externa')->unique();
+            $table->bigInteger('id_pagamento')->nullable();
+            $table->string('metodo_pagamento')->nullable();
+            $table->bigInteger('id_ordem_pagamento')->nullable();
+            $table->string('referencia_externa')->unique()->nullable();
             $table->timestamps();
         });
     }

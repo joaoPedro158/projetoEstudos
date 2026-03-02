@@ -40,7 +40,7 @@ class CheckoutService {
             throw new Exception("Endereço de entrega não selecionado.");
         }
 
-        $enderecoId = $checkout['endereco']['id'];
+        $enderecoId = $checkout['endereco'];
         $exists = Endereco::where('id', $enderecoId)
                     ->where('user_id', auth()->id())
                     ->exists();

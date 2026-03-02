@@ -17,7 +17,7 @@ class PagamentoServiceImpl implements PagamentoInterface{
         MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
     }
 
-    public function criarPreferencia(CheckoutPedidoDTO $dto) {
+    public function criarPreferencia(CheckoutPedidoDTO $dto, int $idCompra) {
         try {
             $cliente = new PreferenceClient();
 
@@ -38,7 +38,7 @@ class PagamentoServiceImpl implements PagamentoInterface{
                     "name" => auth()->user()->name,
                     "email" => auth()->user()->email,
                 ],
-                "external_reference" => (string) $dto->enderecoId,
+                "external_reference" => (string) $idCompra,
                 "back_urls" => [
                  "success" => route('pagamento.sucesso'),
                 "failure" => route('pagamento.falha'),
@@ -58,11 +58,10 @@ class PagamentoServiceImpl implements PagamentoInterface{
         $response = $e->getApiResponse();
         dd([
             'status_code' => $response->getStatusCode(),
-            'content' => $response->getContent(), // AQUI ESTÁ O VILÃO!
+            'content' => $response->getContent(),
         ]);
     }
 
-    // Caso não tenha o método, vamos dar dump no objeto todo para investigar
     dd($e);
         }
 

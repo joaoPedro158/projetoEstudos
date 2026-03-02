@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             qtd += quantidade;
 
             produtoIds.push({
-                Id: checkbox.getAttribute('data-id'),
+                id: checkbox.getAttribute('data-id'),
                 quantidade: quantidade,
                 precoUnitario: preco
             })
@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Selecione pelo menos um produto para prosseguir com a compra.');
                 event.preventDefault();
             } else {
+                console.log(produtoIdsJson);
                 checkoutItens(produtoIdsJson);
             }
         }

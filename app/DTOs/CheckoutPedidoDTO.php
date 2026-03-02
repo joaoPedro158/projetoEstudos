@@ -10,10 +10,10 @@ readonly class CheckoutPedidoDTO {
 
     public static function fromSession(array $dados) : self {
         $itensFormatados = collect($dados["itens"])->map(fn($item) =>[
-            'id' => $item['Id'],
+            'id' => $item['id'],
             'preco' =>(float) $item['precoUnitario'],
             'quantidade' =>(int) $item['quantidade'],
-            'titulo' => "Produto #". $item['Id']
+            'titulo' => "Produto #". $item['id']
         ]);
 
         return new self(

@@ -17,11 +17,11 @@ readonly class PagamentoRespostaDTO {
     public static function fromRequest(Request $request) : self {
         return new self(
 
-            referencia: $request->query('external_reference', ''),
-            pagamentoId: $request->query('payment_id', ''),
-            status: $request->query('status', ''),
-            metodoPagamento: $request->query('payment_type', ''),
-            idOrdemPagamento: $request->query('merchant_order_id', '')
+            referencia: $request->query('external_reference'),
+            pagamentoId: $request->query('payment_id'),
+            status: $request->query('status'),
+            metodoPagamento: $request->query('payment_type'),
+            idOrdemPagamento: $request->query('merchant_order_id')
 
         );
     }

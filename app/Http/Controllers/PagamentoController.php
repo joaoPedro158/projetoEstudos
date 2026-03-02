@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\DTOs\PagamentoRespostaDTO;
-use App\Services\RegistraCompraService;
+use App\Interface\RegistraCompra;
 use Illuminate\Http\Request;
 
 class PagamentoController extends Controller
 {
     public function sucesso(Request $request,
-        RegistraCompraService $registraCompraService ) {
+        RegistraCompra $registraCompraService ) {
 
         $dto = PagamentoRespostaDTO::fromRequest($request);
 
