@@ -20,11 +20,12 @@ RUN npm install && npm run build
 
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# ✅ Garante que php-fpm escuta na porta 9000
 RUN echo '[www]' > /usr/local/etc/php-fpm.d/zz-docker.conf && \
     echo 'listen = 127.0.0.1:9000' >> /usr/local/etc/php-fpm.d/zz-docker.conf
 
-COPY docker/nginx.conf /etc/nginx/sites-available/default
+# ✅ Remove configs padrão e usa o nosso
+RUN rm -f /etc/nginx/sites-enabled/default /etc/nginx/conf.d/default.conf
+COPY docker/nginx.conf /etc/nginx/conf.d/app.conf
 
 EXPOSE 8080
 
