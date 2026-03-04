@@ -25,12 +25,14 @@ RUN echo '[www]' > /usr/local/etc/php-fpm.d/zz-docker.conf && \
 
 # ✅ Remove configs padrão e usa o nosso
 RUN rm -f /etc/nginx/sites-enabled/default /etc/nginx/conf.d/default.conf
-COPY docker/nginx.conf /etc/nginx/conf.d/app.conf
+# Use (para garantir que ele seja o arquivo principal lido pelo nginx.conf global):
+COPY docker/nginx.conf /etc/nginx/sites-available/default
+RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 EXPOSE 8080
 
-CMD php artisan config:cache && \
-    php artisan route:cache && \
+CMD php-fpm -D && \
     php artisan migrate --force && \
-    php-fpm -D && \
+    php artisan config:cache && \
+    php artisan route:cache && \
     nginx -g "daemon off;"
