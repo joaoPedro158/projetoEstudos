@@ -20,6 +20,16 @@ php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
 
+echo "=== Permissões ==="
+chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+echo "=== Verificando APP_KEY ==="
+php artisan env | grep APP_KEY || echo "APP_KEY NAO ENCONTRADA"
+
+echo "=== Log de erros do Laravel ==="
+tail -n 20 /var/www/storage/logs/laravel.log 2>/dev/null || echo "Sem log ainda"
+
 echo "=== Testando config Nginx ==="
 nginx -t
 
