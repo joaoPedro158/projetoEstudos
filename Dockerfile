@@ -1,7 +1,7 @@
 FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
-    git curl libpng-dev libonig-dev libxml2-dev zip unzip nginx
+    git curl libpng-dev libonig-dev libxml2-dev zip unzip nginx netcat-openbsd
 
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
@@ -15,24 +15,20 @@ WORKDIR /var/www
 COPY . .
 
 RUN composer install --optimize-autoloader --no-dev
-
 RUN npm install && npm run build
 
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-RUN echo '[www]' > /usr/local/etc/php-fpm.d/zz-docker.conf && \
-    echo 'listen = 127.0.0.1:9000' >> /usr/local/etc/php-fpm.d/zz-docker.conf
+# Garante php-fpm na porta 9000
+RUN sed -i 's|listen = .*|listen = 127.0.0.1:9000|g' /usr/local/etc/php-fpm.d/www.conf
 
-# ✅ Remove configs padrão e usa o nosso
+# Nginx config
 RUN rm -f /etc/nginx/sites-enabled/default /etc/nginx/conf.d/default.conf
-# Use (para garantir que ele seja o arquivo principal lido pelo nginx.conf global):
-COPY docker/nginx.conf /etc/nginx/sites-available/default
-RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+COPY docker/nginx.conf /etc/nginx/conf.d/app.conf
+
+COPY docker/start.sh /start.sh
+RUN chmod +x /start.sh
 
 EXPOSE 8080
 
-CMD php-fpm -D && \
-    php artisan migrate --force && \
-    php artisan config:cache && \
-    php artisan route:cache && \
-    nginx -g "daemon off;"
+CMD ["/start.sh"]
