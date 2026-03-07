@@ -16,9 +16,14 @@ done
 
 echo "=== Rodando artisan ==="
 cd /var/www
-php artisan migrate --force
+
+php artisan config:clear
+php artisan cache:clear
+
+
 php artisan config:cache
 php artisan route:cache
+php artisan migrate --force
 
 echo "=== Permissões ==="
 chmod -R 775 /var/www/storage /var/www/bootstrap/cache
