@@ -72,8 +72,8 @@
                         </p>
                         <span class="inline-block fs-6 fw-bold ms-2 destaque">{{ $desconto }}% OFF</span>
 
-                        <p class="mb-1 h2 fw-bold">
-                            R$ {{ number_format($valorFinal, 2, ',', '.') }}
+                        <p class="mb-1 h2 fw-bold" data-precounitario = "{{ $produto->preco }}">
+                            R$ {{ number_format($produto->preco, 2, ',', '.') }}
                             <span class="fs-6 destaque fw-normal">{{ $desconto }}% off no Pix ou no débito</span>
                         </p>
 
@@ -148,7 +148,7 @@
                                 </p>
                                 <p class="fw-bold">Estoque Disponível: {{ $produto->estoque }}</p>
                                 <div class="gap-2 d-grid">
-                                    <button class="btn btn-primary btn-lg" type="button">Compra agora</button>
+                                    <button class="btn btn-primary btn-lg" id="btnComprar" type="button" data-produto-id="{{ $produto->id }}">Compra agora</button>
                                     <button class="btn btn-outline-primary " id="btnCarrinho" data-produto-id = "{{ $produto->id }}" type="button">Adicionar no carrinho</button>
                                 </div>
                                 <hr>

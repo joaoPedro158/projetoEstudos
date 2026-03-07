@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if(btnCompraAgora) {
             event.preventDefault();
             const { produtoIds } = obterDadosMarcados();
+            console.log("IDs dos produtos selecionados:", produtoIds);
             let produtoIdsJson = JSON.stringify({produto_id: produtoIds});
 
 
@@ -118,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function checkoutItens(produtoIdsJson) {
-        console.log('Enviando IDs dos produtos para o servidor:', produtoIdsJson);
         try {
             const response = await fetch('/checkout/adicionarItem', {
                 method: 'POST',
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     body: produtoIdsJson
             });
             if (response.ok) {
-                window.location.href = '/endereco';
+                // window.location.href = '/endereco';
             } else {
                 alert('Erro ao processar checkout. Tente novamente.');
             }
