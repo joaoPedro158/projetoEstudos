@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const btnCarrinho = document.getElementById('btnCarrinho');
 
-    if (btnCarrinho) {
-        btnCarrinho.addEventListener('click', function() {
-            const produtoId = this.dataset.produtoId;
+    document.addEventListener('click', function(event){
+        const btnCarrinho = event.target.closest('.btn-carrinho');
+        if(btnCarrinho) {
+            event.preventDefault();
+            event.stopPropagation();
+            const produtoId = btnCarrinho.getAttribute('data-produto-id');
             adicionarAoCarrinho(produtoId);
-        });
-    }
-
+        }
+    })
     function adicionarAoCarrinho(produtoId) {
         fetch('/carrinho-ajax', {
             method: 'POST',
