@@ -38,38 +38,36 @@ class ProdutoController extends Controller
     }
 
  public function show($id, CalculoService $calculoservice) {
-    // Usuário autenticado
+
     $usuario = auth()->user();
 
-    // Busca o produto
+
     $produto = Produto::findOrFail($id);
 
-    // Busca o dono do produto
+
     $donoProduto = User::where('id', $produto->user_id)->first()->toArray();
 
-    // Verifica favoritos do usuário
+
     $favoritosIds = auth()->check()
         ? auth()->user()->favoritos()->pluck('produtos.id')->toArray()
         : [];
 
-    // Calcula desconto (preço à vista)
+
     $desconto = 15;
     $valorFinal = $calculoservice->desconto($produto->preco, $desconto);
 
-    // Calcula parcelamento baseado no preço à vista (com desconto)
+
     $opcoesParcelamento = $calculoservice->calcularParcelamento($valorFinal);
     $melhorParcela = $calculoservice->melhorOpcaoParcelamento($valorFinal);
     $maxParcelas = $calculoservice->calcularParcelasMaximas($valorFinal);
 
-    // Busca todos os produtos
-    $produtos = Produto::all();
 
-    // Retorna a view
+
+
     return view('produto.produtoShow', compact(
         'produto',
         'donoProduto',
         'favoritosIds',
-        'produtos',
         'valorFinal',
         'desconto',
         'opcoesParcelamento',

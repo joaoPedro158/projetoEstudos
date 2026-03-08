@@ -3,6 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let tempo = 28800;
     const tokenCSRF = document.querySelector('meta[name="csrf-token"]').content;
     const btnComprar = document.getElementById('btnComprar');
+    const btnFavorito = document.getElementById('btnFavorito');
+
+    if(btnFavorito) {
+        btnFavorito.addEventListener('click', function(){
+            const produtoId = this.dataset.id;
+            const isFavorito = this.classList.contains('text-danger');
+            const url = isFavorito ? '/favoritos/remover' : '/favoritos/adicionar';
+
+            toggleFavorito(produtoId, url, this);
+        })
+
+    }
 
     if (btnComprar) {
         btnComprar.addEventListener('click', function(event) {
@@ -49,6 +61,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    async function toggleFavorito(produtoId,url,elemento) {
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': tokenCSRF,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ produto_id: produtoId })
+            });
+            if (response.ok) {
+                elemento.classList.toggle('bi-heart');
+                elemento.classList.toggle('bi-heart-fill');
+                elemento.classList.toggle('text-danger');
+            }
+        } catch (error) {
+            console.error('Erro na requisição:', error);
+        }
+    }
 
     const regressiva = document.getElementById('regressiva');
     if (regressiva) {
